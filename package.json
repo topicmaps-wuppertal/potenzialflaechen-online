@@ -2,6 +2,9 @@
   "name": "potenzialflaechen-online",
   "version": "0.1.0",
   "private": true,
+  "config": {
+    "dockerRegistryPath": "reg.cismet.de/cismet"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -33,7 +36,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "postbuild": "ls -d build > /dev/null && git rev-parse --short HEAD && echo $npm_package_version && git rev-parse --short HEAD > build/githash && echo $npm_package_version > build/version",
-    "postversion": "echo Postversionhook && rm .version && rm .githash && sed '/^.*\"version\":.*$/d' package.json > .package.json.without.version && echo $npm_package_version && echo $npm_package_version > .version && git rev-parse HEAD > .githash"
+    "postversion": "echo Postversionhook && rm .version && rm .githash && sed '/^.*\"version\":.*$/d' package.json > .package.json.without.version && echo $npm_package_version && echo $npm_package_version > .version && git rev-parse HEAD > .githash",
+    "build:docker": "yarn build && VERSION=`echo $npm_package_version| sed 's/\\.[0-9]*-SNAPSHOT.*$/-SNAPSHOT/'`; docker build  -t cismet/$npm_package_name -t cismet/$npm_package_name:$VERSION .",
+    "publish:docker": "yarn run build:docker; VERSION=`echo $npm_package_version| sed 's/\\.[0-9]*-SNAPSHOT.*$/-SNAPSHOT/'`; docker tag cismet/$npm_package_name:$VERSION $npm_package_config_dockerRegistryPath/$npm_package_name:$VERSION && docker push $npm_package_config_dockerRegistryPath/$npm_package_name:$VERSION"
   },
   "eslintConfig": {
     "extends": [
