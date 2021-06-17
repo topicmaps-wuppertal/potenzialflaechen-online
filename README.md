@@ -1,10 +1,10 @@
-# TopicMap für [ ____ ____ ____ ____ ] in Wuppertal
+# TopicMap für Potenzialflächen in Wuppertal
 
-[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/topicmaps-wuppertal/projektname)
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/topicmaps-wuppertal/potenzialflaechen-online)
 
-## Ein einfaches Beispiel für eine TopicMap
+## Eine Applikation zur Bereitstellung von Potenzialflächen
 
-<img width="1549" alt="Screenshot 2021-02-19 at 08 40 49" src="https://user-images.githubusercontent.com/837211/108474812-2b2a9480-7290-11eb-967a-b174a73e9707.png">
+<img width="1195" alt="Screenshot" src="https://user-images.githubusercontent.com/837211/122437043-9fa0e600-cf99-11eb-986f-b92deb111911.png">
 
 ## Datengrundlage
 
