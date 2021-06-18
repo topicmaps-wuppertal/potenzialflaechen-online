@@ -233,7 +233,8 @@ const InfoPanel = () => {
               {display("Bezeichnung", potenzialflaeche?.bezeichnung)}
               {display("Flächengröße", potenzialflaeche?.groesse, (a) => (
                 <span>
-                  {a} m² (circa {Math.round((a / 10000) * 10) / 10} ha)
+                  {a.toLocaleString()} m² (circa{" "}
+                  {(Math.round((a / 10000) * 10) / 10).toLocaleString()} ha)
                 </span>
               ))}
               {display("Stadtbezirk(e)", potenzialflaeche?.stadtbezirke, (sb) => sb.join(", "))}
