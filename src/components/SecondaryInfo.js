@@ -85,7 +85,7 @@ const InfoPanel = () => {
 
     if (
       potenzialflaeche?.umgebungsnutzung ||
-      potenzialflaeche?.brachflaechenkategorien ||
+      potenzialflaeche?.brachflaechen ||
       potenzialflaeche?.jahr_brachflaeche ||
       potenzialflaeche?.bisherige_nutzung ||
       potenzialflaeche?.bestand_bebauung ||
@@ -102,7 +102,7 @@ const InfoPanel = () => {
         >
           <div style={{ fontSize: "115%", padding: "10px", paddingTop: "0px" }}>
             {display("Umgebungsnutzung", potenzialflaeche?.umgebungsnutzung)}
-            {display("Brachfläche", potenzialflaeche?.brachflaechenkategorien)}
+            {display("Brachfläche", potenzialflaeche?.brachflaechen)}
             {display("Nutzungsaufgabe", potenzialflaeche?.jahr_brachflaeche)}
             {display("Bisherige Nutzung", potenzialflaeche?.bisherige_nutzung)}
             {display("Bestand Bebauung", potenzialflaeche?.bestand_bebauung)}
@@ -178,10 +178,10 @@ const InfoPanel = () => {
             )}
             {display("Anzahl mög. Wohneinheiten", potenzialflaeche?.wohneinheiten, (t) => (
               <span>
-                {t}
                 {potenzialflaeche?.anzahl_wohneinheiten && (
                   <span> {potenzialflaeche?.anzahl_wohneinheiten}</span>
-                )}
+                )}{" "}
+                {t}
               </span>
             ))}
 
@@ -196,17 +196,17 @@ const InfoPanel = () => {
         </SecondaryInfoPanelSection>
       );
     }
-    if (potenzialflaeche?.interne_hinweise) {
-      subSections.push(
-        <SecondaryInfoPanelSection key='standort' bsStyle='secondary' header={"Interne Hinweise"}>
-          <div style={{ fontSize: "115%", padding: "10px", paddingTop: "0px" }}>
-            {potenzialflaeche?.interne_hinweise.split("\n").map((part, index) => {
-              return <p key={"interne_hinweise.part" + index}>{part}</p>;
-            })}
-          </div>
-        </SecondaryInfoPanelSection>
-      );
-    }
+    // if (potenzialflaeche?.interne_hinweise) {
+    //   subSections.push(
+    //     <SecondaryInfoPanelSection key='standort' bsStyle='secondary' header={"Interne Hinweise"}>
+    //       <div style={{ fontSize: "115%", padding: "10px", paddingTop: "0px" }}>
+    //         {potenzialflaeche?.interne_hinweise.split("\n").map((part, index) => {
+    //           return <p key={"interne_hinweise.part" + index}>{part}</p>;
+    //         })}
+    //       </div>
+    //     </SecondaryInfoPanelSection>
+    //   );
+    // }
 
     const showRawData = new URLSearchParams(window.location.href).get("showRawData");
     if (showRawData === "true") {
