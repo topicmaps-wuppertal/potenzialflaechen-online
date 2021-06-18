@@ -280,8 +280,7 @@ function App() {
               setWaiting({
                 icon: "file-pdf",
                 title: "Steckbrief " + item.nummer + " wird erzeugt",
-                text:
-                  "Nachdem der Steckbrief fertiggestellt wurde, startet automatisch der Download. (Dauert im Moment noch etwas länger ¯\\_(ツ)_/¯ ) ",
+                text: "Nachdem der Steckbrief fertiggestellt wurde, startet automatisch der Download. (Dauert im Moment noch etwas länger ¯\\_(ツ)_/¯ ) ",
               });
               let taskParameters = {
                 parameters: {
@@ -426,6 +425,7 @@ function App() {
         gazData={gazData}
         homeZoom={13}
         maxZoom={22}
+        locatorControl={true}
         modalMenu={<MyMenu />}
         //backgroundlayers='wupp-plan-live@40'
         // backgroundlayers='OMT_Klokantech_basic'
