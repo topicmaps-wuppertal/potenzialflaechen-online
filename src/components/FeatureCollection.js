@@ -78,7 +78,7 @@ const FC = ({ jwt, setJWT, setLoginInfo }) => {
     } else {
       setItems([]);
     }
-  }, [jwt, setItems]);
+  }, [jwt]);
   return (
     <FeatureCollection
       featureClickHandler={(event) => {
