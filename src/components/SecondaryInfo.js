@@ -208,18 +208,20 @@ const InfoPanel = () => {
       );
     }
 
-    subSections.push(
-      <SecondaryInfoPanelSection
-        key='standort'
-        bsStyle='info'
-        header={"Potenzialfläche (raw data): " + potenzialflaeche?.nummer}
-      >
-        <div style={{ fontSize: "115%", padding: "10px", paddingTop: "0px" }}>
-          <pre>{JSON.stringify(potenzialflaeche, null, 2)}</pre>
-        </div>
-      </SecondaryInfoPanelSection>
-    );
-
+    const showRawData = new URLSearchParams(window.location.href).get("showRawData");
+    if (showRawData === "true") {
+      subSections.push(
+        <SecondaryInfoPanelSection
+          key='standort'
+          bsStyle='info'
+          header={"Potenzialfläche (raw data): " + potenzialflaeche?.nummer}
+        >
+          <div style={{ fontSize: "115%", padding: "10px", paddingTop: "0px" }}>
+            <pre>{JSON.stringify(potenzialflaeche, null, 2)}</pre>
+          </div>
+        </SecondaryInfoPanelSection>
+      );
+    }
     return (
       <SecondaryInfo
         titleIconName='info-circle'
