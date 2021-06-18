@@ -93,7 +93,9 @@ function App() {
     localforage.setItem("@" + appKey + "." + "auth" + "." + "jwt", jwt);
     _setJWT(jwt);
   };
-
+  useEffect(() => {
+    document.title = "Potenzialflächen Online";
+  }, []);
   useEffect(() => {
     (async () => {
       const jwtInCache = await localforage.getItem("@" + appKey + "." + "auth" + "." + "jwt");
