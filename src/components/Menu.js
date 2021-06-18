@@ -11,12 +11,12 @@ import Section from "react-cismap/topicmaps/menu/Section";
 import FilterPanel from "react-cismap/topicmaps/menu/FilterPanel";
 import DefaultSettingsPanel from "react-cismap/topicmaps/menu/DefaultSettingsPanel";
 import ConfigurableDocBlocks from "react-cismap/topicmaps/ConfigurableDocBlocks";
+import MenuFooter from "./MenuFooter";
 
 const MyMenu = () => {
   const { setAppMenuActiveMenuSection } = useContext(UIDispatchContext);
-  const { filterState, filterMode, filteredItems, shownFeatures } = useContext(
-    FeatureCollectionContext
-  );
+  const { filterState, filterMode, filteredItems, shownFeatures } =
+    useContext(FeatureCollectionContext);
   const { setFilterState, setFilterMode } = useContext(FeatureCollectionDispatchContext);
 
   const { items } = useContext(FeatureCollectionContext);
@@ -157,6 +157,7 @@ const MyMenu = () => {
           }
         />,
       ]}
+      menuFooter={<MenuFooter />}
     />
   );
 };
