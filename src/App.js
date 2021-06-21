@@ -1,34 +1,22 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 import Color from "color";
+import "leaflet/dist/leaflet.css";
+import localforage from "localforage";
 import { useEffect, useState } from "react";
+import "react-bootstrap-typeahead/css/Typeahead.css";
 import { MappingConstants } from "react-cismap";
 import TopicMapContextProvider from "react-cismap/contexts/TopicMapContextProvider";
+import { getInternetExplorerVersion } from "react-cismap/tools/browserHelper";
 import { md5FetchText } from "react-cismap/tools/fetching";
 import { getGazDataForTopicIds } from "react-cismap/tools/gazetteerHelper";
-import GenericInfoBoxFromFeature from "react-cismap/topicmaps/GenericInfoBoxFromFeature";
-import TopicMapComponent from "react-cismap/topicmaps/TopicMapComponent";
-import localforage from "localforage";
-import { Modal } from "react-bootstrap";
-import ReactLoading from "react-loading";
-
-import FeatureCollection from "./components/FeatureCollection";
+import { defaultLayerConf } from "react-cismap/tools/layerFactory";
+import "react-cismap/topicMaps.css";
+import "./App.css";
+import itemFilterFunction from "./components/filterFunction";
 import LoginForm from "./components/LoginForm";
 import Title from "./components/TitleControl";
-import InfoPanel from "./components/SecondaryInfo";
-// import "proj4leaflet";
-import proj4 from "proj4";
-
-import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "leaflet/dist/leaflet.css";
-import "react-bootstrap-typeahead/css/Typeahead.css";
-import "react-cismap/topicMaps.css";
-import { getInternetExplorerVersion } from "react-cismap/tools/browserHelper";
-import MyMenu from "./components/Menu";
-import itemFilterFunction from "./components/filterFunction";
-import { proj4crs25832def, proj4crs3857def } from "react-cismap/constants/gis";
-import IconComp from "react-cismap/commons/Icon";
 import Waiting from "./components/Waiting";
-import { defaultLayerConf } from "react-cismap/tools/layerFactory";
+import PotenzialflaechenOnlineMap from "./PotenzialflaechenOnlineMap";
 
 // import consolere from "console-remote-client";
 
@@ -93,9 +81,7 @@ function App() {
     localforage.setItem("@" + appKey + "." + "auth" + "." + "jwt", jwt);
     _setJWT(jwt);
   };
-  useEffect(() => {
-    document.title = "Potenzialflächen Online";
-  }, []);
+
   useEffect(() => {
     (async () => {
       const jwtInCache = await localforage.getItem("@" + appKey + "." + "auth" + "." + "jwt");
@@ -422,37 +408,13 @@ function App() {
         />
       )}
       <Waiting waiting={waiting} />
-      <TopicMapComponent
-        mapStyle={{ backgroundColor: "white" }}
+
+      <PotenzialflaechenOnlineMap
         gazData={gazData}
-        homeZoom={13}
-        maxZoom={22}
-        locatorControl={true}
-        modalMenu={<MyMenu />}
-        //backgroundlayers='wupp-plan-live@40'
-        // backgroundlayers='OMT_Klokantech_basic'
-        // 'trueOrtho2020@20'
-        infoBox={
-          <GenericInfoBoxFromFeature
-            pixelwidth={350}
-            config={{
-              displaySecondaryInfoAction: true,
-              city: "Wuppertal",
-              navigator: {
-                noun: {
-                  singular: "Potenzialfläche",
-                  plural: "Potenzialflächen",
-                },
-              },
-              noCurrentFeatureTitle: "Keine Potenzialflächen gefunden",
-              noCurrentFeatureContent: "",
-            }}
-          />
-        }
-        secondaryInfo={<InfoPanel />}
-      >
-        <FeatureCollection jwt={jwt} setJWT={setJWT} setLoginInfo={setLoginInfo} />
-      </TopicMapComponent>
+        jwt={jwt}
+        setJWT={setJWT}
+        setLoginInfo={setLoginInfo}
+      />
     </TopicMapContextProvider>
   );
 }
