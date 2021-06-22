@@ -4,9 +4,11 @@ import { Alert, Button, Form, Modal } from "react-bootstrap";
 import IconComp from "react-cismap/commons/Icon";
 import { ResponsiveTopicMapContext } from "react-cismap/contexts/ResponsiveTopicMapContextProvider";
 import { appKey } from "../App";
+import { CACHE_JWT } from "react-cismap/tools/fetching";
+
 const LoginForm = ({
   setJWT = (jwt) => {
-    console.log("you need to set the attribute setJWT in the <Logoin> component", jwt);
+    console.log("you need to set the attribute setJWT in the <Login> component", jwt);
   },
   loginInfo,
   setLoginInfo = () => {},
@@ -93,7 +95,11 @@ const LoginForm = ({
     >
       <Modal.Header>
         <Modal.Title>
-          <IconComp name={"user"} /> Anmeldung
+          <div>
+            <div>
+              <IconComp name={"user"} /> Anmeldung
+            </div>
+          </div>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body style={modalBodyStyle} id='potenzialflaechen-online' key='login'>
@@ -148,21 +154,38 @@ const LoginForm = ({
             }}
           >
             {loginInfo?.text && (
-              <div style={{ margin: 10, color: loginInfo?.color || "black" }}>
+              <div style={{ margin: 10, color: loginInfo?.color || "black", maxWidth: 200 }}>
                 <b>{loginInfo?.text}</b>
               </div>
             )}
             <div style={{ flexShrink: 100 }}></div>
-
-            <Button
-              onClick={(e) => {
-                login();
-              }}
-              style={{ margin: 10, marginTop: 30 }}
-              variant='primary'
-            >
-              Anmeldung
-            </Button>
+            <div>
+              <Button
+                onClick={(e) => {
+                  setLoginInfo({
+                    color: "#79BD9A",
+                    text: "Alte Daten werden aus dem Cahe übernommen.",
+                  });
+                  setTimeout(() => {
+                    setJWT(CACHE_JWT);
+                    setLoginInfo();
+                  }, 500);
+                }}
+                style={{ margin: 5, marginTop: 30 }}
+                variant='secondary'
+              >
+                Offline arbeiten
+              </Button>
+              <Button
+                onClick={(e) => {
+                  login();
+                }}
+                style={{ margin: 5, marginTop: 30 }}
+                variant='primary'
+              >
+                Anmeldung
+              </Button>
+            </div>
           </div>
         </Form>
       </Modal.Body>

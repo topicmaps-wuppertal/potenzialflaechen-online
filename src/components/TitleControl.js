@@ -1,17 +1,35 @@
 import { useContext } from "react";
 import { ResponsiveTopicMapContext } from "react-cismap/contexts/ResponsiveTopicMapContextProvider";
+import { FeatureCollectionContext } from "react-cismap/contexts/FeatureCollectionContextProvider";
+
+import { CACHE_JWT } from "react-cismap/tools/fetching";
 
 const Title = ({ logout, jwt }) => {
   const { windowSize } = useContext(ResponsiveTopicMapContext);
-  let user, jwtPayload;
-  try {
-    jwtPayload = atob(jwt.split(".")[1]);
-    user = JSON.parse(jwtPayload).sub;
-  } catch (e) {}
+  const { metaInformation } = useContext(FeatureCollectionContext);
+  let dateInfo;
+  if (metaInformation) {
+    const t = metaInformation.time;
+    const d = new Date(t);
+    console.log("xxx time", d.toLocaleString());
+    dateInfo = d.toLocaleString();
+  }
 
+  let secondaryInfo, jwtPayload, actiontext;
+  if (jwt === CACHE_JWT) {
+    secondaryInfo = "Daten aus dem Cache"; //;+ metaInformation.time;
+    actiontext = "anmelden und Daten aktualisieren";
+  } else {
+    try {
+      jwtPayload = atob(jwt.split(".")[1]);
+      secondaryInfo = JSON.parse(jwtPayload).sub;
+      actiontext = "abmelden";
+    } catch (e) {}
+  }
   const titleContent = (
     <div>
-      <b>Potenzialflächen-Online</b> ({user})
+      <b>Potenzialflächen-Online</b> (
+      {secondaryInfo + (dateInfo !== undefined ? ", " + dateInfo : "")})
       <div style={{ float: "right", paddingRight: 10 }}>
         <a
           style={{ color: "#337ab7" }}
@@ -20,7 +38,7 @@ const Title = ({ logout, jwt }) => {
           }}
         >
           {/* <FontAwesomeIcon icon={faRandom} style={{ marginRight: 5 }} /> */}
-          abmelden
+          {actiontext}
         </a>
       </div>
     </div>

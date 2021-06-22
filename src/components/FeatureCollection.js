@@ -10,7 +10,7 @@ import { md5ActionFetchDAQ } from "react-cismap/tools/fetching";
 const FC = ({ jwt, setJWT, setLoginInfo }) => {
   const { zoomToFeature } = useContext(TopicMapDispatchContext);
   const { routedMapRef } = useContext(TopicMapContext);
-  const { setItems } = useContext(FeatureCollectionDispatchContext);
+  const { setItems, setMetaInformation } = useContext(FeatureCollectionDispatchContext);
 
   useEffect(() => {
     if (jwt !== undefined) {
@@ -21,8 +21,9 @@ const FC = ({ jwt, setJWT, setLoginInfo }) => {
         "potenzialflaechen"
       )
         .then(
-          (potenzialflaechen) => {
-            setItems(potenzialflaechen);
+          (result) => {
+            setItems(result.data);
+            setMetaInformation({ time: result.time });
           },
           (problem) => {
             if (problem.status === 401) {
@@ -33,6 +34,7 @@ const FC = ({ jwt, setJWT, setLoginInfo }) => {
               }, 2500);
             }
             setItems([]);
+            setMetaInformation();
           }
         )
         .catch((e) => {

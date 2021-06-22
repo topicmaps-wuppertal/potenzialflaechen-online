@@ -13,22 +13,11 @@ import { defaultLayerConf } from "react-cismap/tools/layerFactory";
 import "react-cismap/topicMaps.css";
 import "./App.css";
 import itemFilterFunction from "./components/filterFunction";
-import LoginForm from "./components/LoginForm";
+import LoginForm, { CACHE_JWT } from "./components/LoginForm";
 import Title from "./components/TitleControl";
 import Waiting from "./components/Waiting";
 import PotenzialflaechenOnlineMap from "./PotenzialflaechenOnlineMap";
 import { md5ActionFetchDAQ } from "react-cismap/tools/fetching";
-
-// import consolere from "console-remote-client";
-
-// consolere.connect({
-//   server: "http://bender:8088",
-//   channel: "pf", // required
-//   redirectDefaultConsoleToRemote: false, // optional, default: false
-//   disableDefaultConsoleOutput: false, // optional, default: false
-// });
-
-// console.re.log("S T A R T");
 
 const baseLayerConf = { ...defaultLayerConf };
 baseLayerConf.namedLayers.cismetLight = {
@@ -66,7 +55,7 @@ function App() {
   const [gazData, setGazData] = useState([]);
 
   useEffect(() => {
-    setGazData([...dynGazData, ...staticGazData]);
+    setGazData([...(dynGazData || []), ...staticGazData]);
   }, [staticGazData, dynGazData]);
 
   useEffect(() => {
@@ -103,8 +92,8 @@ function App() {
         "potenzialflaechenGaz"
       )
         .then(
-          (potenzialflaechenGazData) => {
-            setDynGazData(potenzialflaechenGazData);
+          (potenzialflaechenGazResult) => {
+            setDynGazData(potenzialflaechenGazResult.data);
           },
           (problem) => {
             if (problem.status === 401) {
