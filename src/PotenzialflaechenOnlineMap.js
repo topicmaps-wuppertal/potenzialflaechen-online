@@ -1,9 +1,13 @@
-import React, { useContext, useEffect } from "react";
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import Color from "color";
 import "leaflet/dist/leaflet.css";
+import React, { useContext } from "react";
 import "react-bootstrap-typeahead/css/Typeahead.css";
+import {
+  FeatureCollectionContext,
+  FeatureCollectionDispatchContext,
+} from "react-cismap/contexts/FeatureCollectionContextProvider";
+import { TopicMapDispatchContext } from "react-cismap/contexts/TopicMapContextProvider";
 import { md5FetchText } from "react-cismap/tools/fetching";
 import { getGazDataForTopicIds } from "react-cismap/tools/gazetteerHelper";
 import { defaultLayerConf } from "react-cismap/tools/layerFactory";
@@ -14,8 +18,6 @@ import "./App.css";
 import FeatureCollection from "./components/FeatureCollection";
 import MyMenu from "./components/Menu";
 import InfoPanel from "./components/SecondaryInfo";
-import { FeatureCollectionDispatchContext } from "react-cismap/contexts/FeatureCollectionContextProvider";
-import { FeatureCollectionContext } from "react-cismap/contexts/FeatureCollectionContextProvider";
 
 const LogSelection = () => {
   const { selectedFeature } = useContext(FeatureCollectionContext);
@@ -67,7 +69,7 @@ const getGazData = async (setStaticGazData) => {
 
 function PotenzialflaechenOnlineMap({ gazData, jwt, setJWT, setLoginInfo }) {
   const { setSelectedFeatureByPredicate } = useContext(FeatureCollectionDispatchContext);
-
+  const { zoomToFeature } = useContext(TopicMapDispatchContext);
   return (
     <TopicMapComponent
       mapStyle={{ backgroundColor: "white" }}
@@ -101,13 +103,15 @@ function PotenzialflaechenOnlineMap({ gazData, jwt, setJWT, setLoginInfo }) {
         if (Array.isArray(hits) && hits[0]?.more?.pid) {
           setSelectedFeatureByPredicate((feature) => {
             try {
-              return parseInt(feature.properties.id) === hits[0].more.pid;
+              const check = parseInt(feature.properties.id) === hits[0].more.pid;
+              if (check === true) {
+                zoomToFeature(feature);
+              }
+              return check;
             } catch (e) {
               return false;
             }
           });
-
-          setTimeout(() => {}, 1);
         }
       }}
     >
