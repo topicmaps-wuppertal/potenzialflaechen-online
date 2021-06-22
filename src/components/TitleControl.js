@@ -11,7 +11,6 @@ const Title = ({ logout, jwt }) => {
   if (metaInformation) {
     const t = metaInformation.time;
     const d = new Date(t);
-    console.log("xxx time", d.toLocaleString());
     dateInfo = d.toLocaleString();
   }
 
