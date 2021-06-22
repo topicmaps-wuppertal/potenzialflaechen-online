@@ -17,6 +17,7 @@ import LoginForm from "./components/LoginForm";
 import Title from "./components/TitleControl";
 import Waiting from "./components/Waiting";
 import PotenzialflaechenOnlineMap from "./PotenzialflaechenOnlineMap";
+import { md5ActionFetchDAQ } from "react-cismap/tools/fetching";
 
 // import consolere from "console-remote-client";
 
@@ -95,66 +96,32 @@ function App() {
 
   useEffect(() => {
     if (jwt) {
-      let taskParameters = {
-        parameters: {
-          daqKey: "potenzialflaechenGaz",
-        },
-      };
-
-      let fd = new FormData();
-      fd.append(
-        "taskparams",
-        new Blob([JSON.stringify(taskParameters)], {
-          type: "application/json",
-        })
-      );
-      fetch(
-        // "https://potenzialflaechen-online-api.cismet.de/users",
-        // "https://eniptvf9euuoeze.m.pipedream.net",
-
-        "https://potenzialflaechen-online-api.cismet.de/actions/WUNDA_BLAU.dataAquisition/tasks?resultingInstanceType=result",
-        {
-          method: "POST",
-          // method: "GET",
-          headers: {
-            Authorization: "Bearer " + jwt,
-            // "Content-Type": "application/json",
-            // Accept: "application/json",
-          },
-          body: fd,
-        }
+      md5ActionFetchDAQ(
+        "potenzialflaechen-online",
+        "https://potenzialflaechen-online-api.cismet.de",
+        jwt,
+        "potenzialflaechenGaz"
       )
-        .then(function (response) {
-          if (response.status >= 200 && response.status < 300) {
-            response.json().then(function (content) {
-              // console.log("response from cids", content);
-              if (content.res) {
-                const gaz = JSON.parse(content.res);
-                if (Array.isArray(gaz)) {
-                  setDynGazData(gaz);
-                } else {
-                  setDynGazData(JSON.parse(gaz.content));
-                }
-              } else {
-                console.log("Probleme ber der Abfrage der Gazetteer-Daten");
-              }
-            });
-          } else {
-            if (response.status === 401) {
+        .then(
+          (potenzialflaechenGazData) => {
+            setDynGazData(potenzialflaechenGazData);
+          },
+          (problem) => {
+            if (problem.status === 401) {
               setJWT(undefined);
               setLoginInfo({ color: "#F9D423", text: "Bitte melden Sie sich erneut an." });
               setTimeout(() => {
                 setLoginInfo();
               }, 2500);
             }
-            // response.text().then((x) => {189	60	90
-            //   console.log("error", x);
-            // });
+            setDynGazData([]);
           }
-        })
-        .catch(function (err) {
-          ///
+        )
+        .catch((e) => {
+          console.log("xxx error ", e);
         });
+    } else {
+      setDynGazData([]);
     }
   }, [jwt]);
 
