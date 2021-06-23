@@ -8,6 +8,8 @@ import FeatureCollection from "react-cismap/FeatureCollection";
 import { md5ActionFetchDAQ } from "react-cismap/tools/fetching";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
+import { appKey } from "../PotenzialflaechenOnlineMap";
+import { apiUrl, dataDaqKey } from "../App";
 
 dayjs.extend(customParseFormat);
 
@@ -18,18 +20,11 @@ const FC = ({ jwt, setJWT, setLoginInfo }) => {
 
   useEffect(() => {
     if (jwt !== undefined) {
-      md5ActionFetchDAQ(
-        "potenzialflaechen-online",
-        "https://potenzialflaechen-online-api.cismet.de",
-        jwt,
-        "potenzialflaechen"
-      )
+      md5ActionFetchDAQ(appKey, apiUrl, jwt, dataDaqKey)
         .then(
           (result) => {
             //parse e.g. 2021-06-23 06:51:56.97500
             const time = dayjs(result.time, "YYYY-MM-DD hh:mm:ss").toDate();
-            console.log("time of result", time);
-
             setItems(result.data);
             setMetaInformation({ time });
           },

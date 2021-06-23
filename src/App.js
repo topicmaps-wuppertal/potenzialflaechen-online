@@ -29,6 +29,9 @@ baseLayerConf.namedLayers.cismetLight = {
 const host = "https://wupp-topicmaps-data.cismet.de";
 const selectionColor = new Color("#2664D8");
 export const appKey = "Potenzialflaechen.Online.Wuppertal";
+export const apiUrl = "https://potenzialflaechen-online-api.cismet.de";
+export const dataDaqKey = "potenzialflaechen";
+export const gazDaqKey = "potenzialflaechenGaz";
 const getGazData = async (setStaticGazData) => {
   const prefix = "GazDataForStories";
   const sources = {};
@@ -86,12 +89,7 @@ function App() {
 
   useEffect(() => {
     if (jwt) {
-      md5ActionFetchDAQ(
-        "potenzialflaechen-online",
-        "https://potenzialflaechen-online-api.cismet.de",
-        jwt,
-        "potenzialflaechenGaz"
-      )
+      md5ActionFetchDAQ(appKey, apiUrl, jwt, gazDaqKey)
         .then(
           (potenzialflaechenGazResult) => {
             setDynGazData(potenzialflaechenGazResult.data);

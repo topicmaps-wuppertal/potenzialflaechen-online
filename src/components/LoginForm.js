@@ -3,7 +3,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { Alert, Button, Form, Modal } from "react-bootstrap";
 import IconComp from "react-cismap/commons/Icon";
 import { ResponsiveTopicMapContext } from "react-cismap/contexts/ResponsiveTopicMapContextProvider";
-import { appKey } from "../App";
+import { apiUrl, appKey, dataDaqKey } from "../App";
 import { CACHE_JWT } from "react-cismap/tools/fetching";
 
 const LoginForm = ({
@@ -24,6 +24,8 @@ const LoginForm = ({
   };
   const [user, _setUser] = useState("");
   const [pw, setPw] = useState("");
+  const [cacheDataAvailable, setCacheDataAvailable] = useState(false);
+
   window.localforage = localforage;
   const setUser = (user) => {
     localforage.setItem("@" + appKey + "." + "auth" + "." + "user", user);
@@ -33,6 +35,11 @@ const LoginForm = ({
   useEffect(() => {
     (async () => {
       const userInCache = await localforage.getItem("@" + appKey + "." + "auth" + "." + "user");
+      const dataValueInCache = await localforage.getItem(
+        "@" + appKey + ".." + apiUrl + "." + dataDaqKey + ".data"
+      );
+
+      setCacheDataAvailable(dataValueInCache !== null && dataValueInCache !== undefined);
       if (userInCache) {
         setUser(userInCache);
       }
@@ -160,22 +167,24 @@ const LoginForm = ({
             )}
             <div style={{ flexShrink: 100 }}></div>
             <div>
-              <Button
-                onClick={(e) => {
-                  setLoginInfo({
-                    color: "#79BD9A",
-                    text: "Alte Daten werden aus dem Cahe übernommen.",
-                  });
-                  setTimeout(() => {
-                    setJWT(CACHE_JWT);
-                    setLoginInfo();
-                  }, 500);
-                }}
-                style={{ margin: 5, marginTop: 30 }}
-                variant='secondary'
-              >
-                Offline arbeiten
-              </Button>
+              {cacheDataAvailable === true && (
+                <Button
+                  onClick={(e) => {
+                    setLoginInfo({
+                      color: "#79BD9A",
+                      text: "Alte Daten werden aus dem Cahe übernommen.",
+                    });
+                    setTimeout(() => {
+                      setJWT(CACHE_JWT);
+                      setLoginInfo();
+                    }, 500);
+                  }}
+                  style={{ margin: 5, marginTop: 30 }}
+                  variant='secondary'
+                >
+                  Offline arbeiten
+                </Button>
+              )}
               <Button
                 onClick={(e) => {
                   login();
