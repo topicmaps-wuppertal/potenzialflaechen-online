@@ -1,15 +1,19 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import Color from "color";
 import "leaflet/dist/leaflet.css";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import "react-bootstrap-typeahead/css/Typeahead.css";
 import {
   FeatureCollectionContext,
   FeatureCollectionDispatchContext,
 } from "react-cismap/contexts/FeatureCollectionContextProvider";
-import { TopicMapDispatchContext } from "react-cismap/contexts/TopicMapContextProvider";
+import {
+  TopicMapDispatchContext,
+  TopicMapContext,
+} from "react-cismap/contexts/TopicMapContextProvider";
 import { md5FetchText } from "react-cismap/tools/fetching";
 import { getGazDataForTopicIds } from "react-cismap/tools/gazetteerHelper";
+import { removeQueryPart } from "react-cismap/tools/routingHelper";
 import { defaultLayerConf } from "react-cismap/tools/layerFactory";
 import "react-cismap/topicMaps.css";
 import GenericInfoBoxFromFeature from "react-cismap/topicmaps/GenericInfoBoxFromFeature";
@@ -18,7 +22,7 @@ import "./App.css";
 import FeatureCollection from "./components/FeatureCollection";
 import MyMenu from "./components/Menu";
 import InfoPanel from "./components/SecondaryInfo";
-
+import { UIDispatchContext } from "react-cismap/contexts/UIContextProvider";
 const LogSelection = () => {
   const { selectedFeature } = useContext(FeatureCollectionContext);
   console.log("selectedFeature.properties", selectedFeature?.properties);
@@ -68,8 +72,34 @@ const getGazData = async (setStaticGazData) => {
 };
 
 function PotenzialflaechenOnlineMap({ gazData, jwt, setJWT, setLoginInfo }) {
-  const { setSelectedFeatureByPredicate } = useContext(FeatureCollectionDispatchContext);
+  const { setSelectedFeatureByPredicate, setFilterState } = useContext(
+    FeatureCollectionDispatchContext
+  );
+  const { filterState } = useContext(FeatureCollectionContext);
   const { zoomToFeature } = useContext(TopicMapDispatchContext);
+  const { history } = useContext(TopicMapContext);
+  const { setAppMenuActiveMenuSection, setAppMenuVisible } = useContext(UIDispatchContext);
+  console.log("filterState", filterState);
+
+  useEffect(() => {
+    const handleCleanStart = (search) => {
+      const foundCleanStart = new URLSearchParams(search).get("cleanStart") != null;
+      if (foundCleanStart === true) {
+        let newSearch = removeQueryPart(search, "cleanStart");
+        history.push(newSearch);
+        setFilterState({ kampagnen: [] });
+        setAppMenuVisible(true);
+        setTimeout(() => {
+          setAppMenuActiveMenuSection("filter");
+        }, 50);
+      }
+    };
+    handleCleanStart(history.location.search);
+    return history.listen(() => {
+      handleCleanStart(history.location.search);
+    });
+  }, [history, setFilterState, setAppMenuVisible, setAppMenuActiveMenuSection]);
+
   return (
     <TopicMapComponent
       mapStyle={{ backgroundColor: "white" }}
