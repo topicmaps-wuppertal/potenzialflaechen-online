@@ -6,6 +6,10 @@ import {
 } from "react-cismap/contexts/TopicMapContextProvider";
 import FeatureCollection from "react-cismap/FeatureCollection";
 import { md5ActionFetchDAQ } from "react-cismap/tools/fetching";
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+
+dayjs.extend(customParseFormat);
 
 const FC = ({ jwt, setJWT, setLoginInfo }) => {
   const { zoomToFeature } = useContext(TopicMapDispatchContext);
@@ -22,8 +26,12 @@ const FC = ({ jwt, setJWT, setLoginInfo }) => {
       )
         .then(
           (result) => {
+            //parse e.g. 2021-06-23 06:51:56.97500
+            const time = dayjs(result.time, "YYYY-MM-DD hh:mm:ss").toDate();
+            console.log("time of result", time);
+
             setItems(result.data);
-            setMetaInformation({ time: result.time });
+            setMetaInformation({ time });
           },
           (problem) => {
             if (problem.status === 401) {
