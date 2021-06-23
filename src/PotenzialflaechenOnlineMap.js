@@ -75,11 +75,9 @@ function PotenzialflaechenOnlineMap({ gazData, jwt, setJWT, setLoginInfo }) {
   const { setSelectedFeatureByPredicate, setFilterState } = useContext(
     FeatureCollectionDispatchContext
   );
-  const { filterState } = useContext(FeatureCollectionContext);
   const { zoomToFeature } = useContext(TopicMapDispatchContext);
   const { history } = useContext(TopicMapContext);
   const { setAppMenuActiveMenuSection, setAppMenuVisible } = useContext(UIDispatchContext);
-  console.log("filterState", filterState);
 
   useEffect(() => {
     const handleCleanStart = (search) => {
