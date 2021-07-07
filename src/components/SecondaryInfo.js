@@ -54,6 +54,7 @@ const InfoPanel = () => {
       );
     }
     if (
+      potenzialflaeche?.regionalplan ||
       potenzialflaeche?.bplaene ||
       potenzialflaeche?.festsetzungen_bplan ||
       potenzialflaeche?.bauordnungsrecht_genehmigung ||
@@ -71,11 +72,7 @@ const InfoPanel = () => {
             {/* {display("Flächennutzungsplan", potenzialflaeche?.)} */}
             {display("Bebauungspläne", potenzialflaeche?.bplaene)}
             {display("Festsetzungen", potenzialflaeche?.festsetzungen_bplan)}
-            {display(
-              "Bauordnungsrecht (Genehmigung)",
-              potenzialflaeche?.bauordnungsrecht_genehmigung
-            )}
-            {display("Bauordnungsrecht", potenzialflaeche?.bauordnungsrecht_genehmigung)}
+
             {/* bauordnungsrecht_baulast kommt noch dazu*/}
             {display("Bauordnungsrecht (Stand)", potenzialflaeche?.stand_bauordnungsrecht)}
           </div>
