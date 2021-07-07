@@ -6,9 +6,9 @@ select '['||array_to_string(array(
 select 	'{"id":"'||id ||'",'||
         case when bezeichnung is not null                   and position(',bezeichnung,'in allowed_attributes)<> 0                      then '"bezeichnung":"'||bezeichnung||'",' else '' END ||
         case when nummer is not null                        and position(',nummer,'in allowed_attributes)<> 0                           then '"nummer":"'||nummer||'",' else '' END ||        
-        case when beschreibung_flaeche is not null          and position(',beschreibung_flaeche,'in allowed_attributes)<> 0             then '"beschreibung_flaeche":"'||regexp_replace(regexp_replace(beschreibung_flaeche, '\n', '\\n','g'),'"','\\"','g')||'",' else '' END ||        
-        case when notwendige_massnahmen is not null         and position(',notwendige_massnahmen,'in allowed_attributes)<> 0            then '"notwendige_massnahmen":"'||regexp_replace(regexp_replace(notwendige_massnahmen, '\n', '\\n','g'),'"','\\"','g')||'",' else '' END ||        
-        case when quelle is not null                        and position(',quelle,'in allowed_attributes)<> 0                           then '"quelle":"'||regexp_replace(regexp_replace(quelle, '\n', '\\n','g'),'"','\\"','g')||'",' else '' END ||        
+        case when beschreibung_flaeche is not null          and position(',beschreibung_flaeche,'in allowed_attributes)<> 0             then '"beschreibung_flaeche":"'||regexp_replace(regexp_replace(regexp_replace(beschreibung_flaeche, '\n', '\\n','g'),'"','\\"','g'), '\t', ' ','g')||'",' else '' END ||        
+        case when notwendige_massnahmen is not null         and position(',notwendige_massnahmen,'in allowed_attributes)<> 0            then '"notwendige_massnahmen":"'||regexp_replace(regexp_replace(regexp_replace(notwendige_massnahmen, '\n', '\\n','g'),'"','\\"','g'), '\t', ' ','g')||'",' else '' END ||        
+        case when quelle is not null                        and position(',quelle,'in allowed_attributes)<> 0                           then '"quelle":"'||regexp_replace(regexp_replace(regexp_replace(quelle, '\n', '\\n','g'),'"','\\"','g'), '\t', ' ','g')||'",' else '' END ||        
         case when bestand_bebauung is not null              and position(',vorhandene_bebauung,'in allowed_attributes)<> 0              then '"bestand_bebauung":"'||bestand_bebauung||'",' else '' END ||   
         case when anzahl_wohneinheiten is not null          and position(',wohneinheiten_anzahl,'in allowed_attributes)<> 0             then '"anzahl_wohneinheiten":"'||anzahl_wohneinheiten||'",' else '' END ||        
         case when festsetzungen_bplan is not null           and position(',festsetzungen_bplan,'in allowed_attributes)<> 0              then '"festsetzungen_bplan":"'||festsetzungen_bplan||'",' else '' END ||        
@@ -33,7 +33,7 @@ select 	'{"id":"'||id ||'",'||
         case when oepnv is not null                         and position(',oepnv_anbindung,'in allowed_attributes)<> 0                  then '"oepnv":"'||oepnv||'",' else '' END ||        
         case when versiegelung is not null                  and position(',versiegelung,'in allowed_attributes)<> 0                     then '"versiegelung":"'||versiegelung||'",' else '' END ||        
         case when klimainformationen is not null            and position(',klimainformationen,'in allowed_attributes)<> 0               then '"klimainformationen":"'||klimainformationen||'",' else '' END ||        
-        case when bauordnungsrecht_genehmigung is not null  and position(',bauordnungsrecht_genehmigung,'in allowed_attributes)<> 0     then '"bauordnungsrecht_genehmigung":"'||bauordnungsrecht_genehmigung||'",' else '' END ||        
+        -- case when bauordnungsrecht_genehmigung is not null  and position(',bauordnungsrecht_genehmigung,'in allowed_attributes)<> 0     then '"bauordnungsrecht_genehmigung":"'||bauordnungsrecht_genehmigung||'",' else '' END ||        
         case when bauordnungsrecht_baulast is not null      and position(',bauordnungsrecht_baulast,'in allowed_attributes)<> 0         then '"bauordnungsrecht_baulast":"'||bauordnungsrecht_baulast||'",' else '' END ||        
         case when handlungsdruck is not null                and position(',handlungsdruck,'in allowed_attributes)<> 0                   then '"handlungsdruck":"'||handlungsdruck||'",' else '' END ||        
         case when handlungsprioritaet is not null           and position(',handlungsprioritaet,'in allowed_attributes)<> 0              then '"handlungsprioritaet":"'||handlungsprioritaet||'",' else '' END ||        
@@ -118,8 +118,8 @@ select 	'{"id":"'||id ||'",'||
                 pf_handlungsdruck.name handlungsdruck,
                 pf_handlungsprioritaet.name handlungsprioritaet,
                                 (select  '['||array_to_string(array_agg('"'||name||'"'),', ')||']' from pf_eigentuemer JOIN pf_eigentuemer_arr on pf_eigentuemer.id=pf_eigentuemer_arr.fk_eigentuemer where pf_eigentuemer_arr.pf_potenzialflaeche_reference=pf_potenzialflaeche.id) eigentuemer,
-                (select  '['||array_to_string(array_agg('"'||name||'"'),', ')||']' from pf_nutzung JOIN pf_potenzialflaechen_bisherige_nutzung on pf_nutzung.id=pf_potenzialflaechen_bisherige_nutzung.nutzung where pf_potenzialflaechen_bisherige_nutzung.pf_potenzialflaeche_reference=pf_potenzialflaeche.id) umgebungsnutzung,
-                (select  '['||array_to_string(array_agg('"'||name||'"'),', ')||']' from pf_nutzung JOIN pf_potenzialflaechen_umgebungsnutzung on pf_nutzung.id=pf_potenzialflaechen_umgebungsnutzung.nutzung where pf_potenzialflaechen_umgebungsnutzung.pf_potenzialflaeche_reference=pf_potenzialflaeche.id) bisherige_nutzung,
+                (select  '['||array_to_string(array_agg('"'||name||'"'),', ')||']' from pf_nutzung JOIN pf_potenzialflaechen_bisherige_nutzung on pf_nutzung.id=pf_potenzialflaechen_bisherige_nutzung.nutzung where pf_potenzialflaechen_bisherige_nutzung.pf_potenzialflaeche_reference=pf_potenzialflaeche.id) bisherige_nutzung,
+                (select  '['||array_to_string(array_agg('"'||name||'"'),', ')||']' from pf_nutzung JOIN pf_potenzialflaechen_umgebungsnutzung on pf_nutzung.id=pf_potenzialflaechen_umgebungsnutzung.nutzung where pf_potenzialflaechen_umgebungsnutzung.pf_potenzialflaeche_reference=pf_potenzialflaeche.id) umgebungsnutzung,
                 (select  '['||array_to_string(array_agg('"'||name||'"'),', ')||']' from pf_naehe_zu JOIN  pf_naehen_zu on pf_naehe_zu.id=pf_naehen_zu.fk_naehe_zu where pf_naehen_zu.pf_potenzialflaeche_reference=pf_potenzialflaeche.id) naehe_zu,
                 (select  '['||array_to_string(array_agg('"'||name||'"'),', ')||']' from pf_brachflaeche JOIN  pf_brachflaechen on pf_brachflaeche.id=pf_brachflaechen.fk_brachflaeche where pf_brachflaechen.pf_potenzialflaeche_reference=pf_potenzialflaeche.id) brachflaechen,
                 (select  '['||array_to_string(array_agg('"'||name||'"'),', ')||']' from pf_empfohlene_nutzung JOIN  pf_empfohlene_nutzungen on pf_empfohlene_nutzung.id=pf_empfohlene_nutzungen.fk_empfohlene_nutzung where pf_empfohlene_nutzungen.pf_potenzialflaeche_reference=pf_potenzialflaeche.id) empfohlene_nutzungen,
@@ -195,10 +195,9 @@ select 	'{"id":"'||id ||'",'||
                     FROM pf_potenzialflaeche LEFT JOIN geom pf_geom ON pf_geom.id = pf_potenzialflaeche.geometrie
                     LEFT JOIN ( 
                     SELECT wohnlage_kategorie.name, sub_geom.geo_field
-                    FROM wohnlage
-                    LEFT JOIN geom sub_geom ON sub_geom.id = wohnlage.fk_geometrie
-                    LEFT JOIN wohnlage_kategorisierung ON wohnlage_kategorisierung.fk_wohnlage = wohnlage.id
-                    LEFT JOIN wohnlage_kategorie ON wohnlage_kategorie.id = wohnlage_kategorisierung.fk_kategorie
+                    FROM wohnlage_flaeche 
+                    LEFT JOIN wohnlage_kategorie ON wohnlage_kategorie.id = wohnlage_flaeche.fk_wohnlage_kategorie 
+                    LEFT JOIN geom sub_geom ON sub_geom.id = wohnlage_flaeche.fk_geom 
                     ) sub ON sub.geo_field && pf_geom.geo_field and st_intersects(sub.geo_field,st_buffer(pf_geom.geo_field,-2)) GROUP BY pf_potenzialflaeche.id, pf_geom.geo_field) WL
                     ON WL.pf_id=pf_potenzialflaeche.id
                 LEFT JOIN
@@ -237,7 +236,7 @@ select 	'{"id":"'||id ||'",'||
 --                     FROM pf_potenzialflaeche LEFT JOIN geom pf_geom ON pf_geom.id = pf_potenzialflaeche.geometrie 
 --                     LEFT JOIN ( 
 --                         SELECT fnp_hn_kategorie.nutzung AS name, sub_geom.geo_field
---                         FROM fnp_hn_kategorie select * from potenzial-
+--                         FROM fnp_hn_kategorie
 --                         LEFT JOIN fnp_hn_flaeche ON fnp_hn_flaeche.fk_fnp_hn_kategorie = fnp_hn_kategorie.id 
 --                         LEFT JOIN geom sub_geom ON sub_geom.id = fnp_hn_flaeche.fk_geom
 --                     ) sub ON (
