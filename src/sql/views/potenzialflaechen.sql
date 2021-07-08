@@ -22,8 +22,8 @@ select 	'{"id":"'||id ||'",'||
         case when topografie is not null                    and position(',topografie,'in allowed_attributes)<> 0                       then '"topografie":"'||topografie||'",' else '' END ||        
         case when hang is not null                          and position(',hang,'in allowed_attributes)<> 0                             then '"hang":"'||hang||'",' else '' END ||        
         case when verwertbarkeit is not null                and position(',verwertbarkeit,'in allowed_attributes)<> 0                   then '"verwertbarkeit":"'||verwertbarkeit||'",' else '' END ||        
-        case when verfuegbarkeit is not null                and position(',verfuegbarkeit,'in allowed_attributes)<> 0                   then '"verfuegbarkeit":"'||verfuegbarkeit||'",' else '' END ||               
-        case when entwicklungsaussichten is not null        and position(',entwicklungsaussichten,'in allowed_attributes)<> 0           then '"entwicklungsaussichten":"'||entwicklungsaussichten||'",' else '' END ||        
+        case when verfuegbarkeit is not null                and position(',verfuegbbarkeit,'in allowed_attributes)<> 0                   then '"verfuegbbarkeit":"'||verfuegbarkeit||'",' else '' END ||               
+        case when entwicklungsaussichten is not null        and position(',entwicklungsausssichten,'in allowed_attributes)<> 0           then '"entwicklungsausssichten":"'||entwicklungsaussichten||'",' else '' END ||        
         case when entwicklungsstand is not null             and position(',entwicklungsstand,'in allowed_attributes)<> 0                then '"entwicklungsstand":"'||entwicklungsstand||'",' else '' END ||   
         case when revitalisierung is not null               and position(',revitalisierung,'in allowed_attributes)<> 0                  then '"revitalisierung":"'||revitalisierung||'",' else '' END ||        
         case when aeussere_erschliessung is not null        and position(',aeussere_erschliessung,'in allowed_attributes)<> 0           then '"aeussere_erschliessung":"'||aeussere_erschliessung||'",' else '' END ||        
