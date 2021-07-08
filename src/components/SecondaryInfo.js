@@ -65,7 +65,7 @@ const InfoPanel = () => {
         <SecondaryInfoPanelSection
           key='standort'
           bsStyle='danger'
-          header={"Planungsrecht / Bauplanungsrecht / Bauordnungsrecht"}
+          header={<span>Planungsrecht / Bauplanungsrecht / Bauordnungsrecht</span>}
         >
           <div style={{ fontSize: "115%", padding: "10px", paddingTop: "0px" }}>
             {display("Regionalplan", potenzialflaeche?.regionalplan)}
@@ -206,7 +206,7 @@ const InfoPanel = () => {
     // }
 
     const showRawData = new URLSearchParams(window.location.href).get("showRawData");
-    if (showRawData === "true") {
+    if (showRawData !== null) {
       subSections.push(
         <SecondaryInfoPanelSection
           key='standort'
@@ -228,6 +228,7 @@ const InfoPanel = () => {
             <div>
               {display("Nummer", potenzialflaeche?.nummer)}
               {display("Bezeichnung", potenzialflaeche?.bezeichnung)}
+              {display("Kampagne", potenzialflaeche?.kampagne?.bezeichnung)}
               {display("Flächengröße", potenzialflaeche?.groesse, (a) => (
                 <span>
                   {a.toLocaleString()} m² (circa{" "}
