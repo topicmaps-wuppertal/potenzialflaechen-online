@@ -68,6 +68,8 @@ select 	'{"id":"'||id ||'",'||
                 pf_potenzialflaeche.kampagne kampagne_id,
                                 (select '{"id":"'||id ||'",'||
                         case when bezeichnung is not null then '"bezeichnung":"'||bezeichnung||'",' else '' END ||
+                        case when order_by is not null then '"order_by":"'||order_by||'",' else '' END ||
+
                         case when colorcode is not null then '"color":"'||colorcode||'",' else '' END ||
                         case when beschreibung is not null then '"beschreibung":"'||beschreibung||'",' else '' END ||
                         case when veroeffentlichkeitsstatus is not null then '"veroeffentlichkeitsstatus":"'||veroeffentlichkeitsstatus||'",' else '' END ||
@@ -77,6 +79,7 @@ select 	'{"id":"'||id ||'",'||
                                 select 
                                     pf_kampagne.id,
                                     bezeichnung,
+                                    pf_kampagne.order_by,
                                     colorcode,
                                     beschreibung,
                                     pf_veroeffentlichkeitsstatus."name" veroeffentlichkeitsstatus,
@@ -248,6 +251,7 @@ select 	'{"id":"'||id ||'",'||
 --                     ON FNP.pf_id=pf_potenzialflaeche.id
     where geo_field is not null
 and pf_potenzialflaeche.veroeffentlicht = true and pf_kampagne.veroeffentlicht=true
+order by pf_kampagne.order_by, pf_potenzialflaeche.nummer
 )  xx
 
    ), ',\n')||']' as json
