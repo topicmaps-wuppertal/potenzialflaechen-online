@@ -16,13 +16,13 @@ import { getGazDataForTopicIds } from "react-cismap/tools/gazetteerHelper";
 import { removeQueryPart } from "react-cismap/tools/routingHelper";
 import { defaultLayerConf } from "react-cismap/tools/layerFactory";
 import "react-cismap/topicMaps.css";
-import GenericInfoBoxFromFeature from "react-cismap/topicmaps/GenericInfoBoxFromFeature";
 import TopicMapComponent from "react-cismap/topicmaps/TopicMapComponent";
 import "./App.css";
 import FeatureCollection from "./components/FeatureCollection";
 import MyMenu from "./components/Menu";
 import InfoPanel from "./components/SecondaryInfo";
 import { UIDispatchContext } from "react-cismap/contexts/UIContextProvider";
+import InfoBox from "./components/InfoBox";
 const LogSelection = () => {
   const { selectedFeature } = useContext(FeatureCollectionContext);
   console.log("selectedFeature.properties", selectedFeature?.properties);
@@ -110,7 +110,7 @@ function PotenzialflaechenOnlineMap({ gazData, jwt, setJWT, setLoginInfo }) {
       // backgroundlayers='OMT_Klokantech_basic'
       // 'trueOrtho2020@20'
       infoBox={
-        <GenericInfoBoxFromFeature
+        <InfoBox
           pixelwidth={350}
           config={{
             displaySecondaryInfoAction: true,

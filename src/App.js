@@ -12,14 +12,14 @@ import { getGazDataForTopicIds } from "react-cismap/tools/gazetteerHelper";
 import { defaultLayerConf } from "react-cismap/tools/layerFactory";
 import "react-cismap/topicMaps.css";
 import "./App.css";
-import itemFilterFunction from "./components/filterFunction";
+import itemFilterFunction from "./utils/filterFunction";
 import LoginForm from "./components/LoginForm";
 import Title from "./components/TitleControl";
 import Waiting from "./components/Waiting";
 import PotenzialflaechenOnlineMap from "./PotenzialflaechenOnlineMap";
 import { md5ActionFetchDAQ } from "react-cismap/tools/fetching";
 import SteckbriefActionFactory from "./components/SteckbriefActionFactory";
-
+import convertItemToSimpleFeature from "./utils/convertItemToSimpleFeature";
 const baseLayerConf = { ...defaultLayerConf };
 baseLayerConf.namedLayers.cismetLight = {
   type: "vector",
@@ -64,6 +64,7 @@ function App() {
 
   useEffect(() => {
     getGazData(setStaticGazData);
+    document.title = "Potenzialflächen-Online Wuppertal";
   }, []);
 
   const [jwt, _setJWT] = useState();
@@ -184,55 +185,11 @@ function App() {
       itemFilterFunction={itemFilterFunction}
       classKeyFunction={(item) => item?.kampagne?.bezeichnung}
       convertItemToFeature={(_item) => {
-        const item = JSON.parse(JSON.stringify(_item));
-        //         console.log("xxx item?.geojson?.crs", item?.geojson?.coordinates);
-        //         console.log(
-        //           "xxx item?.geojson?.crs",
-        //           //item?.geojson
-        // roj          proj4(proj4crs25832def, proj4crs3857def, item?.geojson?.coordinates)
-        //         );
-
-        const geometry = item?.geojson;
-        const selected = false;
-        const type = "Feature";
-        const text = item?.bezeichnung;
-
-        item.color = item?.kampagne?.color;
-        let subtitle = "";
-
-        if (item?.beschreibung_flaeche) {
-          subtitle = item.beschreibung_flaeche.split("\n")[0];
-        } else {
-          subtitle = "Nähere Informationen zur Fläche finden Sie im Datenblatt.";
-        }
-
-        const info = {
-          header: item?.kampagne?.bezeichnung,
-          title: text,
-          subtitle:
-            "<html><div><b>Nummer:</b> " +
-            item?.nummer +
-            "</div><div><b>Größe:</b> " +
-            parseInt(item?.groesse, 10).toLocaleString() +
-            " m²</div></html>",
-        };
-        item.info = info;
-        item.genericLinks = [
-          SteckbriefActionFactory({ setWaiting, item, jwt, setJWT, setLoginInfo }),
+        const f = convertItemToSimpleFeature(_item);
+        f.properties.genericLinks = [
+          SteckbriefActionFactory({ setWaiting, item: f.properties, jwt, setJWT, setLoginInfo }),
         ];
-        return {
-          text,
-          type,
-          selected,
-          geometry,
-          crs: geometry?.crs || {
-            type: "name",
-            properties: {
-              name: "urn:ogc:def:crs:EPSG::25832",
-            },
-          },
-          properties: item,
-        };
+        return f;
       }}
       alwaysShowAllFeatures={false}
       getFeatureStyler={() => {
