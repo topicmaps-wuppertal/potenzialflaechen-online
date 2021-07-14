@@ -21,7 +21,7 @@ const MyMenu = () => {
 
   const { items } = useContext(FeatureCollectionContext);
 
-  const kampagnen = [];
+  let kampagnen = [];
   const kampagnenValues = [];
 
   for (const item of items || []) {
@@ -33,10 +33,19 @@ const MyMenu = () => {
         color: item.kampagne.color,
         icon: "square",
         iconPos: "pre",
+        order: item.kampagne.order_by,
       });
     }
   }
+  kampagnenValues.sort((a, b) => {
+    return parseInt(a.order) - parseInt(b.order);
+  });
 
+  //delte and add sorted kamapgnen again
+  kampagnen = [];
+  for (const kampagnenvalue of kampagnenValues) {
+    kampagnen.push(kampagnenvalue.key);
+  }
   const filterConfiguration = {
     mode: "list", // list or tabs
     resetedFilter: {
