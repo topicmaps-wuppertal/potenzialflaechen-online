@@ -1,5 +1,3 @@
-import { convertBBox2Bounds } from "react-cismap/tools/gisHelper";
-
 const convert = (_item) => {
   const item = JSON.parse(JSON.stringify(_item));
 

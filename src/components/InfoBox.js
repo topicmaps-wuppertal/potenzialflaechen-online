@@ -9,13 +9,7 @@ import itemFilterFunction from "../utils/filterFunction";
 const InfoBox = (props) => {
   const featureCollectionContext = useContext(FeatureCollectionContext);
   const { setSelectedFeatureByPredicate } = useContext(FeatureCollectionDispatchContext);
-  const {
-    shownFeatures = [],
-    selectedFeature,
-    allFeatures = 0,
-    filteredItems = [],
-    filterState,
-  } = featureCollectionContext;
+  const { selectedFeature, filterState } = featureCollectionContext;
 
   const overlappingHeaders = [];
   let counter = 1;

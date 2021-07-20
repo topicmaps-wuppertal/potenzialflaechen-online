@@ -1,34 +1,22 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import Color from "color";
 import "leaflet/dist/leaflet.css";
 import React, { useContext, useEffect } from "react";
 import "react-bootstrap-typeahead/css/Typeahead.css";
+import { FeatureCollectionDispatchContext } from "react-cismap/contexts/FeatureCollectionContextProvider";
 import {
-  FeatureCollectionContext,
-  FeatureCollectionDispatchContext,
-} from "react-cismap/contexts/FeatureCollectionContextProvider";
-import {
-  TopicMapDispatchContext,
   TopicMapContext,
+  TopicMapDispatchContext,
 } from "react-cismap/contexts/TopicMapContextProvider";
-import { md5FetchText } from "react-cismap/tools/fetching";
-import { getGazDataForTopicIds } from "react-cismap/tools/gazetteerHelper";
-import { removeQueryPart } from "react-cismap/tools/routingHelper";
+import { UIDispatchContext } from "react-cismap/contexts/UIContextProvider";
 import { defaultLayerConf } from "react-cismap/tools/layerFactory";
+import { removeQueryPart } from "react-cismap/tools/routingHelper";
 import "react-cismap/topicMaps.css";
 import TopicMapComponent from "react-cismap/topicmaps/TopicMapComponent";
 import "./App.css";
 import FeatureCollection from "./components/FeatureCollection";
+import InfoBox from "./components/InfoBox";
 import MyMenu from "./components/Menu";
 import InfoPanel from "./components/SecondaryInfo";
-import { UIDispatchContext } from "react-cismap/contexts/UIContextProvider";
-import InfoBox from "./components/InfoBox";
-const LogSelection = () => {
-  const { selectedFeature } = useContext(FeatureCollectionContext);
-  console.log("selectedFeature.properties", selectedFeature?.properties);
-
-  return <div></div>;
-};
 
 // import consolere from "console-remote-client";
 
@@ -47,29 +35,7 @@ baseLayerConf.namedLayers.cismetLight = {
   style: "https://omt.map-hosting.de/styles/cismet-light/style.json",
 };
 
-const host = "https://wupp-topicmaps-data.cismet.de";
-const selectionColor = new Color("#2664D8");
 export const appKey = "Potenzialflaechen.Online.Wuppertal";
-const getGazData = async (setStaticGazData) => {
-  const prefix = "GazDataForStories";
-  const sources = {};
-
-  sources.adressen = await md5FetchText(prefix, host + "/data/3857/adressen.json");
-  sources.bezirke = await md5FetchText(prefix, host + "/data/3857/bezirke.json");
-  sources.quartiere = await md5FetchText(prefix, host + "/data/3857/quartiere.json");
-  sources.pois = await md5FetchText(prefix, host + "/data/3857/pois.json");
-  sources.kitas = await md5FetchText(prefix, host + "/data/3857/kitas.json");
-
-  const gazData = getGazDataForTopicIds(sources, [
-    "pois",
-    "kitas",
-    "bezirke",
-    "quartiere",
-    "adressen",
-  ]);
-
-  setStaticGazData(gazData);
-};
 
 function PotenzialflaechenOnlineMap({ gazData, jwt, setJWT, setLoginInfo }) {
   const { setSelectedFeatureByPredicate, setFilterState } = useContext(

@@ -73,6 +73,7 @@ function App() {
   const [waiting, setWaiting] = useState();
 
   const setJWT = (jwt) => {
+    /*eslint no-useless-concat: "off"*/
     localforage.setItem("@" + appKey + "." + "auth" + "." + "jwt", jwt);
     _setJWT(jwt);
   };

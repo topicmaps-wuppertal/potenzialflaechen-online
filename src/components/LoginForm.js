@@ -1,10 +1,10 @@
 import localforage from "localforage";
 import { useContext, useEffect, useRef, useState } from "react";
-import { Alert, Button, Form, Modal } from "react-bootstrap";
+import { Button, Form, Modal } from "react-bootstrap";
 import IconComp from "react-cismap/commons/Icon";
 import { ResponsiveTopicMapContext } from "react-cismap/contexts/ResponsiveTopicMapContextProvider";
-import { apiUrl, appKey, dataDaqKey } from "../App";
 import { CACHE_JWT } from "react-cismap/tools/fetching";
+import { apiUrl, appKey, dataDaqKey } from "../App";
 
 const LoginForm = ({
   setJWT = (jwt) => {
@@ -28,6 +28,7 @@ const LoginForm = ({
 
   window.localforage = localforage;
   const setUser = (user) => {
+    /*eslint no-useless-concat: "off"*/
     localforage.setItem("@" + appKey + "." + "auth" + "." + "user", user);
     _setUser(user);
   };
