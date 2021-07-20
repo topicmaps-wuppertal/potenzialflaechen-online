@@ -7,19 +7,18 @@ import "react-bootstrap-typeahead/css/Typeahead.css";
 import { MappingConstants } from "react-cismap";
 import TopicMapContextProvider from "react-cismap/contexts/TopicMapContextProvider";
 import { getInternetExplorerVersion } from "react-cismap/tools/browserHelper";
-import { md5FetchText } from "react-cismap/tools/fetching";
+import { md5ActionFetchDAQ, md5FetchText } from "react-cismap/tools/fetching";
 import { getGazDataForTopicIds } from "react-cismap/tools/gazetteerHelper";
 import { defaultLayerConf } from "react-cismap/tools/layerFactory";
 import "react-cismap/topicMaps.css";
 import "./App.css";
-import itemFilterFunction from "./utils/filterFunction";
 import LoginForm from "./components/LoginForm";
+import SteckbriefActionFactory from "./components/SteckbriefActionFactory";
 import Title from "./components/TitleControl";
 import Waiting from "./components/Waiting";
 import PotenzialflaechenOnlineMap from "./PotenzialflaechenOnlineMap";
-import { md5ActionFetchDAQ } from "react-cismap/tools/fetching";
-import SteckbriefActionFactory from "./components/SteckbriefActionFactory";
 import convertItemToSimpleFeature from "./utils/convertItemToSimpleFeature";
+import itemFilterFunction from "./utils/filterFunction";
 const baseLayerConf = { ...defaultLayerConf };
 baseLayerConf.namedLayers.cismetLight = {
   type: "vector",

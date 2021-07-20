@@ -92,7 +92,7 @@ const FC = ({ jwt, setJWT, setLoginInfo }) => {
     } else {
       setItems([]);
     }
-  }, [jwt, setItems, setJWT, setLoginInfo, setMetaInformation]);
+  }, [jwt, setJWT, setLoginInfo]); // setItems, setMetaInformation swill rerrender too often
   return (
     <FeatureCollection
       featureClickHandler={(event) => {
