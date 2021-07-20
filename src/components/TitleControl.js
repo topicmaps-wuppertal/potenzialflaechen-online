@@ -26,7 +26,6 @@ const Title = ({ logout, jwt }) => {
     } catch (e) {}
   }
   /*eslint jsx-a11y/anchor-is-valid: "off"*/
-
   const titleContent = (
     <div>
       <b>Potenzialflächen-Online</b> (
