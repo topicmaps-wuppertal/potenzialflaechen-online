@@ -65,7 +65,7 @@ const InfoPanel = () => {
         <SecondaryInfoPanelSection
           key='standort'
           bsStyle='danger'
-          header={<span>Planungsrecht / Bauplanungsrecht / Bauordnungsrecht</span>}
+          header={<span>Planungsrecht / Bauordnungsrecht</span>}
         >
           <div style={{ fontSize: "115%", padding: "10px", paddingTop: "0px" }}>
             {display("Regionalplan", potenzialflaeche?.regionalplan)}
