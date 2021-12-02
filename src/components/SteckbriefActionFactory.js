@@ -41,22 +41,31 @@ const SteckbriefActionFactory = ({ setWaiting, item, jwt, setJWT, setLoginInfo }
           .then(function (response) {
             if (response.status >= 200 && response.status < 300) {
               response.json().then(function (content) {
-                // console.log("response from cids", content);
+                console.log("response from cids", content);
                 if (content.res) {
-                  const byteCharacters = atob(content.res);
-                  const byteNumbers = new Array(byteCharacters.length);
-                  for (let i = 0; i < byteCharacters.length; i++) {
-                    byteNumbers[i] = byteCharacters.charCodeAt(i);
+                  //
+                  const pdfUrl =
+                    "https://potenzialflaechen-online-api.cismet.de" +
+                    "/secres/" +
+                    jwt +
+                    "/potenzialflaecheReportExt/" +
+                    content.res;
+                  try {
+                    fetch(pdfUrl).then((response) => {
+                      response.blob().then((blob) => {
+                        const newBlob = new Blob([blob], { type: "application/pdf" });
+                        const url = window.URL.createObjectURL(newBlob);
+                        var link = document.createElement("a");
+                        link.href = url;
+                        link.download = "Steckbrief." + item.nummer + ".pdf";
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                      });
+                    });
+                  } catch (e) {
+                    console.log("Probleme beim Laden des Reports", e, pdfUrl);
                   }
-                  const byteArray = new Uint8Array(byteNumbers);
-                  const blob = new Blob([byteArray], { type: "application/pdf" });
-
-                  let link = document.createElement("a");
-                  link.href = window.URL.createObjectURL(blob);
-                  link.download = "Steckbrief." + item.nummer + ".pdf";
-                  document.body.appendChild(link);
-                  link.click();
-                  document.body.removeChild(link);
                 } else {
                   console.log("Probleme beim Erzeugen des Reports");
                 }
