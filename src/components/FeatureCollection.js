@@ -24,7 +24,9 @@ const FC = ({ jwt, setJWT, setLoginInfo }) => {
           (result) => {
             //parse e.g. 2021-06-23 06:51:56.97500
             const time = dayjs(result.time, "YYYY-MM-DD hh:mm:ss").toDate();
-
+            if (!result.data) {
+              return;
+            }
             //Check for sibblings and add them to the original data
             // console.time("xxx sibblingsCheck");
             const features = [];
