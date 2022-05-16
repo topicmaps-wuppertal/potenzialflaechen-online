@@ -53,7 +53,7 @@ const MyMenu = () => {
     },
     filters: [
       {
-        title: "Kampagnen",
+        title: "Kategorien",
         key: "kampagnen",
         icon: "layer-group",
         type: "checkBoxes", //"tags" or "checkBoxes",
