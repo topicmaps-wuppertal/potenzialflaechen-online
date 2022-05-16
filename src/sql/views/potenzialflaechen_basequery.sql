@@ -12,7 +12,7 @@ create or replace view daq.potenzialflaechen_basequery as (
             case when quelle is not null                        and position(',quelle,'in allowed_attributes)<> 0                           then '"quelle":"'||regexp_replace(regexp_replace(regexp_replace(quelle, '\n', '\\n','g'),'"','\\"','g'), '\t', ' ','g')||'",' else '' END ||        
             case when bestand_bebauung is not null              and position(',vorhandene_bebauung,'in allowed_attributes)<> 0              then '"bestand_bebauung":"'||bestand_bebauung||'",' else '' END ||   
             case when anzahl_wohneinheiten is not null          and position(',wohneinheiten_anzahl,'in allowed_attributes)<> 0             then '"anzahl_wohneinheiten":"'||anzahl_wohneinheiten||'",' else '' END ||        
-            case when festsetzungen_bplan is not null           and position(',festsetzungen_bplan,'in allowed_attributes)<> 0              then '"festsetzungen_bplan":"'||festsetzungen_bplan||'",' else '' END ||        
+            case when festsetzungen_bplan is not null           and position(',festsetzungen_bplan,'in allowed_attributes)<> 0              then '"festsetzungen_bplan":"'||regexp_replace(regexp_replace(regexp_replace(festsetzungen_bplan, '\n', '\\n','g'),'"','\\"','g'), '\t', ' ','g')||'",' else '' END ||        
             case when stand_bauordnungsrecht is not null        and position(',bauordnungsrecht_stand,'in allowed_attributes)<> 0           then '"stand_bauordnungsrecht":"'||stand_bauordnungsrecht||'",' else '' END ||        
             case when stand is not null                         and position(',stand,'in allowed_attributes)<> 0                            then '"stand":"'||stand||'",' else '' END ||        
             case when jahr_brachflaeche is not null             and position(',jahr_nutzungsaufgabe,'in allowed_attributes)<> 0             then '"jahr_brachflaeche":"'||jahr_brachflaeche||'",' else '' END ||                
@@ -76,7 +76,7 @@ create or replace view daq.potenzialflaechen_basequery as (
                             case when order_by is not null then '"order_by":"'||order_by||'",' else '' END ||
 
                             case when colorcode is not null then '"color":"'||colorcode||'",' else '' END ||
-                            case when beschreibung is not null then '"beschreibung":"'||beschreibung||'",' else '' END ||
+                            case when beschreibung is not null then '"beschreibung":"'||regexp_replace(regexp_replace(regexp_replace(beschreibung, '\n', '\\n','g'),'"','\\"','g'), '\t', ' ','g')||'",' else '' END ||
                             case when veroeffentlichkeitsstatus is not null then '"veroeffentlichkeitsstatus":"'||veroeffentlichkeitsstatus||'",' else '' END ||
                             case when haupt_steckbrieftemplate_id is not null then '"haupt_steckbrieftemplate_id":'||haupt_steckbrieftemplate_id||'' else '' END ||
                             '}'
