@@ -23,6 +23,7 @@ create or replace view daq.potenzialflaechen_gaz_basequery as (
             round(st_y(st_centroid(ST_Transform(geo_field,3857)))::numeric, 2) as y,
             '{"zl":18,"pid":'||pf_potenzialflaeche.id||'}' as  moreJSON
         from pf_potenzialflaeche join geom on (pf_potenzialflaeche.geometrie=geom.id) join pf_kampagne on (pf_potenzialflaeche.kampagne=pf_kampagne.id)
+            where pf_potenzialflaeche.veroeffentlicht = true and pf_kampagne.veroeffentlicht=true
         union
         select 
             pf_kampagne.bezeichnung as kampagne,
@@ -35,6 +36,6 @@ create or replace view daq.potenzialflaechen_gaz_basequery as (
             round(st_y(st_centroid(ST_Transform(geo_field,3857)))::numeric, 2) as y,
             '{"zl":18,"pid":'||pf_potenzialflaeche.id||'}' as  moreJSON
         from pf_potenzialflaeche join geom on (pf_potenzialflaeche.geometrie=geom.id) join pf_kampagne on (pf_potenzialflaeche.kampagne=pf_kampagne.id)
-
+    where pf_potenzialflaeche.veroeffentlicht = true and pf_kampagne.veroeffentlicht=true
             order by 1) as x
 )
