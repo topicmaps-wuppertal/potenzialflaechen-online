@@ -2674,6 +2674,14 @@
     "@turf/helpers" "^6.4.0"
     "@turf/meta" "^6.4.0"
 
+"@turf/bbox@^6.5.0":
+  version "6.5.0"
+  resolved "https://registry.yarnpkg.com/@turf/bbox/-/bbox-6.5.0.tgz#bec30a744019eae420dac9ea46fb75caa44d8dc5"
+  integrity sha512-RBbLaao5hXTYyyg577iuMtDB8ehxMlUqHEJiMs8jT1GHkFhr6sYre3lmLsPeYEi/ZKj5TP5tt7fkzNdJ4GIVyw==
+  dependencies:
+    "@turf/helpers" "^6.5.0"
+    "@turf/meta" "^6.5.0"
+
 "@turf/boolean-disjoint@^6.4.0":
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/@turf/boolean-disjoint/-/boolean-disjoint-6.4.0.tgz#14c009a310c13227ca3e9731ee0a178b8a19e848"
@@ -2702,6 +2710,14 @@
     "@turf/helpers" "^6.4.0"
     "@turf/invariant" "^6.4.0"
 
+"@turf/center@^6.5.0":
+  version "6.5.0"
+  resolved "https://registry.yarnpkg.com/@turf/center/-/center-6.5.0.tgz#3bcb6bffcb8ba147430cfea84aabaed5dbdd4f07"
+  integrity sha512-T8KtMTfSATWcAX088rEDKjyvQCBkUsLnK/Txb6/8WUXIeOZyHu42G7MkdkHRoHtwieLdduDdmPLFyTdG5/e7ZQ==
+  dependencies:
+    "@turf/bbox" "^6.5.0"
+    "@turf/helpers" "^6.5.0"
+
 "@turf/envelope@^6.3.0":
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/@turf/envelope/-/envelope-6.4.0.tgz#e088667092541000c0c61c40ddd4f6f36fc77618"
@@ -2720,6 +2736,11 @@
   version "5.1.5"
   resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-5.1.5.tgz#153405227ab933d004a5bb9641a9ed999fcbe0cf"
   integrity sha1-FTQFInq5M9AEpbuWQantmZ/L4M8=
+
+"@turf/helpers@^6.5.0":
+  version "6.5.0"
+  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-6.5.0.tgz#f79af094bd6b8ce7ed2bd3e089a8493ee6cae82e"
+  integrity sha512-VbI1dV5bLFzohYYdgqwikdMVpe7pJ9X3E+dlr425wa2/sMJqYDhTO++ec38/pcPvPE6oD9WEEeU3Xu3gza+VPw==
 
 "@turf/inside@^5.0.0":
   version "5.0.0"
@@ -2777,6 +2798,13 @@
   integrity sha512-fMra6vMskwz1knn0/tb22ppOeE8CCmpvOvTIxLdV1WYWAoC4bJ4WdXKvZRsJKpHOX5iFehx4DT8aaGdROA4Y3Q==
   dependencies:
     "@turf/helpers" "^6.4.0"
+
+"@turf/meta@^6.5.0":
+  version "6.5.0"
+  resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-6.5.0.tgz#b725c3653c9f432133eaa04d3421f7e51e0418ca"
+  integrity sha512-RrArvtsV0vdsCBegoBtOalgdSOfkBrTJ07VkpiCnq/491W67hnMWmDu7e6Ztw0C3WldRYTXkg3SumfdzZxLBHA==
+  dependencies:
+    "@turf/helpers" "^6.5.0"
 
 "@turf/polygon-to-line@^6.4.0":
   version "6.4.0"
@@ -12120,10 +12148,10 @@ react-chartkick@^0.4.1:
   dependencies:
     chartkick "^3.2.0"
 
-react-cismap@1.8.10:
-  version "1.8.10"
-  resolved "https://registry.yarnpkg.com/react-cismap/-/react-cismap-1.8.10.tgz#ebba241284ffd7e4edd86a821107ace76e4af720"
-  integrity sha512-x2/U/bSuwkiVu0J2WW1marxZvSTPy6cyVv6U5Di3Sa5UJfMqe6QVl5qsKaM2BR/7SWSNEaxWa7EjRW4mvNIO0Q==
+react-cismap@1.9.0:
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/react-cismap/-/react-cismap-1.9.0.tgz#bacf1960a2f5056484b418c7764958bccca0ba76"
+  integrity sha512-rXz7aSJB0LWfoO1UEGmopnJNgxnmBqOZTZqy+PM398TePgUAedIvAyVxfRsA2q0OFQ6F47+h6ZFx3UhrXvNs4g==
   dependencies:
     "@fortawesome/fontawesome-free" "^5.12.0"
     "@fortawesome/fontawesome-svg-core" "^1.2.26"
@@ -12137,6 +12165,7 @@ react-cismap@1.8.10:
     "@turf/bbox" "^6.0.1"
     "@turf/bbox-polygon" "^6.0.1"
     "@turf/boolean-intersects" "^6.3.0"
+    "@turf/center" "^6.5.0"
     "@turf/envelope" "^6.3.0"
     "@turf/helpers" "^6.1.4"
     "@turf/inside" "^5.0.0"
