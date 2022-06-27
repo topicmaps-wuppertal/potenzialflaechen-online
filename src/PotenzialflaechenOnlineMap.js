@@ -67,6 +67,7 @@ function PotenzialflaechenOnlineMap({ gazData, jwt, setJWT, setLoginInfo }) {
   return (
     <TopicMapComponent
       mapStyle={{ backgroundColor: "white" }}
+      applicationMenuTooltipString='Filter | Einstellungen | Anleitung'
       gazData={gazData}
       homeZoom={13}
       maxZoom={22}

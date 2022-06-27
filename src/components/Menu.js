@@ -124,10 +124,10 @@ Anmerkungen und Hinweise können an  [christiane.classen@stadt.wuppertal.de](mai
   return (
     <ModalApplicationMenu
       menuIcon={"bars"}
-      menuTitle={"Meine Potenzialflächen, Einstellungen und Kompaktanleitung"}
+      menuTitle={"Filter, Einstellungen und Kompaktanleitung"}
       menuIntroduction={
         <span>
-          Benutzen Sie die Auswahlmöglichkeiten unter{" "}
+          Benutzen Sie die Filtermöglichkeiten unter{" "}
           <Link
             className='useAClassNameToRenderProperLink'
             to='filter'
