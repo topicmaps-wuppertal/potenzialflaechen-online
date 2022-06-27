@@ -205,6 +205,7 @@ function App() {
           }
           const style = {
             color: borderColor,
+            radius: 5,
             weight: 2,
             opacity: 0.7,
             fillColor: c,
@@ -213,6 +214,7 @@ function App() {
           return style;
         };
       }}
+      featureTooltipFunction={(feature) => feature?.text}
     >
       {jwt === undefined && (
         <LoginForm
