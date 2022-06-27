@@ -9436,7 +9436,7 @@ leaflet-draw@^0.3.2:
   resolved "https://registry.yarnpkg.com/leaflet-draw/-/leaflet-draw-0.3.2.tgz#717ee8fed4c2a9679c12162e1f922d2da503d109"
   integrity sha1-cX7o/tTCqWecEhYuH5ItLaUD0Qk=
 
-leaflet-easybutton@^2.3.0:
+leaflet-easybutton@^2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/leaflet-easybutton/-/leaflet-easybutton-2.4.0.tgz#3ad8ad31c9cf6d5ca7a6a1988f82eed13ff2c1af"
   integrity sha512-O+qsQq4zTF6ds8VClnytobTH/MKalctlPpiA8L+bNKHP14J3lgJpvEd/jSpq9mHTI6qOzRAvbQX6wS6qNwThvg==
@@ -12120,10 +12120,10 @@ react-chartkick@^0.4.1:
   dependencies:
     chartkick "^3.2.0"
 
-react-cismap@1.8.2:
-  version "1.8.2"
-  resolved "https://registry.yarnpkg.com/react-cismap/-/react-cismap-1.8.2.tgz#a32b2b4385514503aae059540be463b30786dc81"
-  integrity sha512-giKnHswbrQ8amS8vpFVksZMmVcU4z/xER3sGoESn2SRiu3lrVtOCy1qaLVFm8IwVZaXygDVfYNKcwr5iI+gZ3A==
+react-cismap@1.8.10:
+  version "1.8.10"
+  resolved "https://registry.yarnpkg.com/react-cismap/-/react-cismap-1.8.10.tgz#ebba241284ffd7e4edd86a821107ace76e4af720"
+  integrity sha512-x2/U/bSuwkiVu0J2WW1marxZvSTPy6cyVv6U5Di3Sa5UJfMqe6QVl5qsKaM2BR/7SWSNEaxWa7EjRW4mvNIO0Q==
   dependencies:
     "@fortawesome/fontawesome-free" "^5.12.0"
     "@fortawesome/fontawesome-svg-core" "^1.2.26"
@@ -12160,7 +12160,7 @@ react-cismap@1.8.2:
     immer "^8.0.1"
     kdbush "^3.0.0"
     leaflet "^1.6.0"
-    leaflet-easybutton "^2.3.0"
+    leaflet-easybutton "^2.4.0"
     leaflet-editable "^1.2.0"
     leaflet-extra-markers "^1.2.1"
     leaflet-fullscreen-custom-container-fork "^1.0.7"
