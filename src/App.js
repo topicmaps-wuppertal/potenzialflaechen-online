@@ -19,10 +19,14 @@ import Waiting from "./components/Waiting";
 import PotenzialflaechenOnlineMap from "./PotenzialflaechenOnlineMap";
 import convertItemToSimpleFeature from "./utils/convertItemToSimpleFeature";
 import itemFilterFunction from "./utils/filterFunction";
+import { offlineConfig } from "./offlineConfig";
+
 const baseLayerConf = { ...defaultLayerConf };
 baseLayerConf.namedLayers.cismetLight = {
   type: "vector",
   style: "https://omt.map-hosting.de/styles/cismet-light/style.json",
+  offlineAvailable: true,
+  offlineDataStoreKey: "wuppBasemap",
 };
 
 const host = "https://wupp-topicmaps-data.cismet.de";
@@ -126,6 +130,7 @@ function App() {
         title: "Stadtplan (Vektordaten light)",
         mode: "default",
         layerKey: "vector",
+        offlineDataStoreKey: "wuppBasemap",
       },
       {
         title: "Amtliche Basiskarte",
@@ -176,6 +181,8 @@ function App() {
     <TopicMapContextProvider
       appKey={appKey}
       backgroundConfigurations={backgroundConfigurations}
+      baseLayerConf={baseLayerConf}
+      offlineCacheConfig={offlineConfig}
       backgroundModes={backgroundModes}
       referenceSystem={MappingConstants.crs3857}
       mapEPSGCode='3857'
