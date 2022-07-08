@@ -1,6 +1,6 @@
 {
   "name": "potenzialflaechen-online",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "private": true,
   "config": {
     "dockerRegistryPath": "reg.cismet.de/cismet"
