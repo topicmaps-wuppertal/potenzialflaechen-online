@@ -12,6 +12,17 @@ import FilterPanel from "react-cismap/topicmaps/menu/FilterPanel";
 import DefaultSettingsPanel from "react-cismap/topicmaps/menu/DefaultSettingsPanel";
 import ConfigurableDocBlocks from "react-cismap/topicmaps/ConfigurableDocBlocks";
 import MenuFooter from "./MenuFooter";
+import Ueberblick from "./onlinehelpsections/010_Ueberblick";
+import Fachdatenquellen from "./onlinehelpsections/020_Fachdatenquellen";
+import Hintergrundkarten from "./onlinehelpsections/030_Hintergrundkarte";
+import Kartendarstellung from "./onlinehelpsections/040_Kartendarstellung";
+import FlaechenAuswaehlen from "./onlinehelpsections/050_FlaechenAuswaehlen";
+import Datenblattansicht from "./onlinehelpsections/052_Datenblattansicht";
+import Steckbriefe from "./onlinehelpsections/054_Steckbriefe";
+import InKartePositionieren from "./onlinehelpsections/060_InKartePositionieren";
+import MeinStandort from "./onlinehelpsections/070_MeinStandort";
+import Filterung from "./onlinehelpsections/080_Filterung";
+import AnmeldungUndOfflineBenutzung from "./onlinehelpsections/090_AnmeldungUndOfflineBenutzung";
 
 const MyMenu = () => {
   const { setAppMenuActiveMenuSection } = useContext(UIDispatchContext);
@@ -79,32 +90,6 @@ const MyMenu = () => {
   if (filterMode === undefined && items !== undefined) {
     setFilterMode("kampagnen");
   }
-  const topicMapTitle = "Potenzialflächen Online";
-  const simpleHelp = {
-    content: `Nach § 200 Baugesetzbuch können Gemeinden bebaubare Flächen in Karten und Listen erfassen 
-(Baulandkataster). Im Rahmen des Förderprogramms Digitale Modellregionen konnte im Jahr 2021 das **Potenzialflächenkataster** 
-der Abteilung 101.1 Stadtentwicklung in das Wuppertaler Navigations- und Datenmanagementsystem WuNDa integriert und der 
-Aufbau eines Baulückenkatasters gestartet werden. Potenzialflächen sind Flächen ab 2000 m², Baulücken haben eine Größe von 400 – 2000 m².
-
-Auf der Basis der eingepflegten digitalisierten und georeferenzierten Flächeninformationen, die laufend aktualisiert werden, 
-wurde die mobile Anwendung „Potenzialflächen Online“ entwickelt. Sie erlaubt es, auf verschiedenen Endgeräten 
-ortsunabhängig auf die Datenbank und die kartographischen Darstellungen (= Kataster) zuzugreifen.
-  
-Neben der räumlichen Abgrenzung und Lage können alle **Informationen** zu Gewerbe- und Wohnbauflächenpotenzialen, 
-allen Brachflächen und weiteren Flächensammlungen im ganzen Stadtgebiet oder in ausgewählten Bezirken bzw. Quartieren 
-gesucht und angezeigt werden. Auf online lesbaren Datenblättern oder in pdf-Dateien werden alle relevanten Daten der 
-einzelnen Flächen angezeigt: 
-**Flächennummer** (diese beginnt immer mit der Stadtbezirksnummer), **Bezeichnung** (Name der Fläche), Größe (in m² und gerundet in ha), 
-**Stadtbezirk/e**, **Quartier/e**, betroffene **Flurstück/e**, **Eigentümerkategorie/n** (anonymisiert), **Lagebewertungen** 
-(bezogen auf den Verkehr und auf den Siedlungsraum), **ÖPNV-Qualität** (Schienen- und Busanbindung), **Nähe zu Verkehrswegen** (Autobahn bis Fahrradtrasse), 
-**Topographie** (mit Angabe der Hangrichtung), **Planungsrecht** (Angaben zum Regionalplan, Flächennutzungsplan, Bebauungsplänen), **Umgebungsnutzungen**, 
-vorhandene **Nutzung**, **Bebauung** und **Versiegelung**, **Wohnlagen** (gem. Gutachterausschuss), **Bodenrichtwert/e**, **Beschreibungen** 
-(Historie, Informationen, Planungen) und **Bewertungen** (Innen- oder Außenentwicklung, Potenzialarten, Restriktionen, Empfohlene Nutzung, 
-  Entwicklungsaussichten, Verfügbarkeit, Verwertbarkeit, Revitalisierung, Handlungsdruck, Handlungspriorität). 
-  
-Anmerkungen und Hinweise können an  [christiane.classen@stadt.wuppertal.de](mailto:christiane.classen@stadt.wuppertal.de) 
-(R 101.11 Intergierte Stadtentwicklung und regionale Kooperation) gesendet werden.`,
-  };
 
   const getFilterHeader = () => {
     const count = filteredItems?.length || 0;
@@ -186,7 +171,105 @@ Anmerkungen und Hinweise können an  [christiane.classen@stadt.wuppertal.de](mai
           sectionTitle='Kompaktanleitung'
           sectionBsStyle='default'
           sectionContent={
-            <ConfigurableDocBlocks configs={getSimpleHelpForTM(topicMapTitle, simpleHelp)} />
+            <ConfigurableDocBlocks
+              configs={[
+                {
+                  type: "FAQS",
+                  configs: [
+                    {
+                      title: "Überblick",
+                      bsStyle: "secondary",
+                      contentBlockConf: {
+                        type: "REACTCOMP",
+                        content: <Ueberblick />,
+                      },
+                    },
+                    {
+                      title: "Fachdatenquellen",
+                      bsStyle: "secondary",
+                      contentBlockConf: {
+                        type: "REACTCOMP",
+                        content: <Fachdatenquellen />,
+                      },
+                    },
+                    {
+                      title: "Hintergrundkarte",
+                      bsStyle: "secondary",
+                      contentBlockConf: {
+                        type: "REACTCOMP",
+                        content: <Hintergrundkarten />,
+                      },
+                    },
+                    {
+                      title: "Kartendarstellung der Potenzialflächen",
+                      bsStyle: "secondary",
+                      contentBlockConf: {
+                        type: "REACTCOMP",
+                        content: <Kartendarstellung />,
+                      },
+                    },
+                    /*----------------------------------------------------------------------------------------------------------------------*/
+                    {
+                      title: "Flächen auswählen und abfragen",
+                      bsStyle: "success",
+                      contentBlockConf: {
+                        type: "REACTCOMP",
+                        content: <FlaechenAuswaehlen />,
+                      },
+                    },
+                    {
+                      title: "Datenblattansicht",
+                      bsStyle: "success",
+                      contentBlockConf: {
+                        type: "REACTCOMP",
+                        content: <Datenblattansicht />,
+                      },
+                    },
+                    {
+                      title: "Steckbriefe",
+                      bsStyle: "success",
+                      contentBlockConf: {
+                        type: "REACTCOMP",
+                        content: <Steckbriefe />,
+                      },
+                    },
+                    {
+                      title: "In Karte positionieren",
+                      bsStyle: "success",
+                      contentBlockConf: {
+                        type: "REACTCOMP",
+                        content: <InKartePositionieren />,
+                      },
+                    },
+                    {
+                      title: "Mein Standort",
+                      bsStyle: "success",
+                      contentBlockConf: {
+                        type: "REACTCOMP",
+                        content: <MeinStandort />,
+                      },
+                    },
+                    /*----------------------------------------------------------------------------------------------------------------------*/
+                    {
+                      title: 'Filterung ("Meine Potenzialflächen")',
+                      bsStyle: "warning",
+                      contentBlockConf: {
+                        type: "REACTCOMP",
+                        content: <Filterung />,
+                      },
+                    },
+                    {
+                      title: "Anmeldung und Offline-Benutzung",
+                      bsStyle: "warning",
+                      contentBlockConf: {
+                        type: "REACTCOMP",
+                        content: <AnmeldungUndOfflineBenutzung />,
+                      },
+                    },
+                  ],
+                },
+              ]}
+            />
           }
         />,
       ]}
