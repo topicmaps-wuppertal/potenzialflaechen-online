@@ -9810,10 +9810,10 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
-maplibre-gl@^1.13.0-rc.5:
-  version "1.14.0"
-  resolved "https://registry.yarnpkg.com/maplibre-gl/-/maplibre-gl-1.14.0.tgz#035663dae6cbaaca5b06024f6c5b51a42db1fc84"
-  integrity sha512-pqr/nsoZHx1rUY2Bpp0EFVcFVgrVOLkDDh2DhZcLVZVHYXdFOH/LyKUoLZda/3/CDTmlZy9ldJeZN8O0g1Ocpg==
+maplibre-gl@1.15.2:
+  version "1.15.2"
+  resolved "https://registry.yarnpkg.com/maplibre-gl/-/maplibre-gl-1.15.2.tgz#7fb47868b62455af916c090903f2154394450f9c"
+  integrity sha512-uPeV530apb4JfX3cRFfE+awFnbcJTOnCv2QvY4mw4huiInbybElWYkNzTs324YLSADq0f4bidRoYcR81ho3aLA==
   dependencies:
     "@mapbox/geojson-rewind" "^0.5.0"
     "@mapbox/geojson-types" "^1.0.2"
@@ -11049,7 +11049,7 @@ polygon-clipping@^0.15.2:
 
 "polylabel@github:mapbox/polylabel":
   version "1.1.0"
-  resolved "https://codeload.github.com/mapbox/polylabel/tar.gz/3be1848a9fe0781372ce44adf9b9d3104d50d52f"
+  resolved "https://codeload.github.com/mapbox/polylabel/tar.gz/4da88d5eff01b7d98a8b2876d7847ba334144013"
   dependencies:
     tinyqueue "^2.0.3"
 
@@ -12148,10 +12148,10 @@ react-chartkick@^0.4.1:
   dependencies:
     chartkick "^3.2.0"
 
-react-cismap@1.9.0:
-  version "1.9.0"
-  resolved "https://registry.yarnpkg.com/react-cismap/-/react-cismap-1.9.0.tgz#bacf1960a2f5056484b418c7764958bccca0ba76"
-  integrity sha512-rXz7aSJB0LWfoO1UEGmopnJNgxnmBqOZTZqy+PM398TePgUAedIvAyVxfRsA2q0OFQ6F47+h6ZFx3UhrXvNs4g==
+react-cismap@1.9.2:
+  version "1.9.2"
+  resolved "https://registry.yarnpkg.com/react-cismap/-/react-cismap-1.9.2.tgz#73b37c54fce879176239fc6724336559cef15746"
+  integrity sha512-kaeWAk+zNeFmNPBmsW+gCCsZHqSfTR1r/3cNe212kmc5l1KmUkd/24rWeGHWN6aHgFQmzsl4+t4PDZk55i5RzQ==
   dependencies:
     "@fortawesome/fontawesome-free" "^5.12.0"
     "@fortawesome/fontawesome-svg-core" "^1.2.26"
@@ -12200,7 +12200,7 @@ react-cismap@1.9.0:
     leaflet.path.drag "^0.0.6"
     localforage "^1.9.0"
     lodash "^4.17.20"
-    maplibre-gl "^1.13.0-rc.5"
+    maplibre-gl "1.15.2"
     md5 "^2.3.0"
     object-assign "^4.1.1"
     polylabel mapbox/polylabel
