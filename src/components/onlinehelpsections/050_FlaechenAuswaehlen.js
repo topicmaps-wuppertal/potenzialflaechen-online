@@ -1,13 +1,14 @@
-import { Link } from "react-scroll";
-import slugify from "slugify";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronCircleDown,
   faChevronCircleUp,
-  faInfoCircle,
   faFilePdf,
+  faInfoCircle,
   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-scroll";
+import slugify from "slugify";
+
 const Infobox = () => {
   return (
     <div>

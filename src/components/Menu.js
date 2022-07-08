@@ -4,13 +4,13 @@ import {
   FeatureCollectionDispatchContext,
 } from "react-cismap/contexts/FeatureCollectionContextProvider";
 import { UIDispatchContext } from "react-cismap/contexts/UIContextProvider";
-import { getSimpleHelpForTM } from "react-cismap/tools/uiHelper";
-import { Link } from "react-scroll";
+import ConfigurableDocBlocks from "react-cismap/topicmaps/ConfigurableDocBlocks";
+import DefaultSettingsPanel from "react-cismap/topicmaps/menu/DefaultSettingsPanel";
+import FilterPanel from "react-cismap/topicmaps/menu/FilterPanel";
 import ModalApplicationMenu from "react-cismap/topicmaps/menu/ModalApplicationMenu";
 import Section from "react-cismap/topicmaps/menu/Section";
-import FilterPanel from "react-cismap/topicmaps/menu/FilterPanel";
-import DefaultSettingsPanel from "react-cismap/topicmaps/menu/DefaultSettingsPanel";
-import ConfigurableDocBlocks from "react-cismap/topicmaps/ConfigurableDocBlocks";
+import { Link } from "react-scroll";
+
 import MenuFooter from "./MenuFooter";
 import Ueberblick from "./onlinehelpsections/010_Ueberblick";
 import Fachdatenquellen from "./onlinehelpsections/020_Fachdatenquellen";

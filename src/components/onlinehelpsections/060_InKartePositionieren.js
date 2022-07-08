@@ -1,7 +1,5 @@
-import { Link } from "react-scroll";
-import slugify from "slugify";
-import InKartePositionierenOriginal from "react-cismap/topicmaps/docBlocks/InKartePositionieren";
 import IconComp from "react-cismap/commons/Icon";
+import InKartePositionierenOriginal from "react-cismap/topicmaps/docBlocks/InKartePositionieren";
 const InKartePositionieren = () => {
   return (
     <div>

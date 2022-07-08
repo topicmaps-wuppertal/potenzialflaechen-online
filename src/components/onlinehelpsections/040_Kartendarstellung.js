@@ -1,7 +1,3 @@
-import { Link } from "react-scroll";
-import slugify from "slugify";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMap } from "@fortawesome/free-solid-svg-icons";
 const ThematischerDurchstich = () => {
   return (
     <div>

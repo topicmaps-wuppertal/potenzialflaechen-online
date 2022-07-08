@@ -1,8 +1,3 @@
-import { Link } from "react-scroll";
-import slugify from "slugify";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDownload } from "@fortawesome/free-solid-svg-icons";
-
 const AnmeldungUndOfflineBenutzung = () => {
   return (
     <div>

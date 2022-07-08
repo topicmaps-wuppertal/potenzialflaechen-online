@@ -1,11 +1,8 @@
+import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-scroll";
 import slugify from "slugify";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faChevronCircleDown,
-  faChevronCircleUp,
-  faInfoCircle,
-} from "@fortawesome/free-solid-svg-icons";
+
 const Infobox = () => {
   return (
     <div>
