@@ -8,9 +8,8 @@ const AnmeldungUndOfflineBenutzung = () => {
         uneingeschränkt öffentlich zugänglich, sondern erfordert eine Anmeldung mit Benutzername und
         Passwort. Die Zugangssteuerung erfolgt dabei über die Nutzerverwaltung des Wuppertaler
         Navigations- und Datenmanagementsystems WuNDa. Zugangsdaten können bei der
-        WuNDa-Administration ({" "}
-        <a href='mailto:wunda@stadt.wuppertal.de'>wunda@stadt.wuppertal.de</a>) beantragt werden,
-        die hierzu auch ein{" "}
+        WuNDa-Administration (<a href='mailto:wunda@stadt.wuppertal.de'>wunda@stadt.wuppertal.de</a>
+        ) beantragt werden, die hierzu auch ein{" "}
         <a href='https://formulare.wuppertal.de/metaform/Form-Solutions/sid/assistant/61fbb0516de84f231ac18ee3'>
           Online-Formular
         </a>{" "}
