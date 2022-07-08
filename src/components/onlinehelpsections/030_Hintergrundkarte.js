@@ -75,7 +75,8 @@ const Hintergrundkarten = () => {
               NB-GDIKOM C
             </a>
             ). (2) Kartendienste (WMS) des Regionalverbandes Ruhr (RVR). Datengrundlagen: Stadtkarte
-            2.0 und Kartenschrift aus der Stadtkarte 2.0. (Details s. Hintergrundkarte Stadtplan).
+            2.0 und Kartenschrift aus der Stadtkarte 2.0. Details s. Hintergrundkarte Stadtplan
+            (grau).
           </p>
         </li>
       </ul>

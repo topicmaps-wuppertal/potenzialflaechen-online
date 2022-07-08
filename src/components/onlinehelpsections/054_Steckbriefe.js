@@ -55,7 +55,7 @@ const Infobox = () => {
           containerId={"myMenu"}
           activeClass='active'
         >
-          Datenblattansichtn
+          Datenblattansicht
         </Link>{" "}
         über die aktuell geladene Potenzialfläche zu informieren.{" "}
       </p>
