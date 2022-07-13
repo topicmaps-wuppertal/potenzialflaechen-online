@@ -11,7 +11,8 @@ const Fachdatenquellen = () => {
           Größe von mehr als 2.000 m², auf denen mit oder ohne Flächennutzungsplan- und / oder
           Bebauungsplanänderungen gewerbliche Nutzungen erfolgen können und vorgesehen sind. Etliche
           Gewerbepotenzialflächen sind Brachflächen oder Wiedernutzungspotenziale und werden auch in
-          diesen Kategorien geführt. Erstmalige systematische Erhebung für das{" "}
+          diesen Kategorien geführt. Seit Ende der 1990er Jahre werden Gewerbeflächenpotenziale in
+          Handlungsprogrammen systematisch erhoben, zuletzt im{" "}
           <a target='_more' href='https://ris.wuppertal.de/vo0050.php?__kvonr=12384'>
             Handlungsprogramm Gewerbeflächen von 2011
           </a>{" "}
@@ -19,7 +20,7 @@ const Fachdatenquellen = () => {
           <a target='_more' href='https://ris.wuppertal.de/to0050.php?__ktonr=50039'>
             Ratsbeschluss vom 23.05.2011
           </a>
-          ),{" "}
+          ) mit{" "}
           <a target='_more' href='https://ris.wuppertal.de/vo0050.php?__kvonr=18635'>
             Fortschreibung im Jahr 2017
           </a>{" "}
@@ -27,7 +28,7 @@ const Fachdatenquellen = () => {
           <a target='_more' href='https://ris.wuppertal.de/to0050.php?__ktonr=83736'>
             Ratsbeschluss vom 07.05.2018
           </a>
-          ),{" "}
+          )und{" "}
           <a target='_more' href='https://ris.wuppertal.de/vo0050.php?__kvonr=24105'>
             Aktualisierung im Jahr 2020
           </a>{" "}
@@ -40,21 +41,23 @@ const Fachdatenquellen = () => {
           Bebauungsplanänderungen wohnbauliche Nutzungen erfolgen können und seitens der
           Stadtentwicklung vorgesehen sind. Etliche Wohnbaupotenzialflächen sind Brachflächen oder
           Wiedernutzungspotenziale und werden auch in diesen Kategorien geführt. Erstmalige
-          systematische Erhebung für das{" "}
-          <a target='_more' href='https://ris.wuppertal.de/vo0050.php?__kvonr=24476'>
-            Innenentwicklungskonzept Wuppertal
-          </a>{" "}
-          (
-          <a target='_more' href='https://ris.wuppertal.de/to0050.php?__ktonr=102431'>
-            Ratsbeschluss vom 07.12.2020
-          </a>
-          ) und das Konzept „
+          systematische Erhebung im Rahmen des Aufstellungsverfahrens für den Flächennutzungsplan
+          2005, Aktualisierung und Ergänzungen für das Handlungsprogramm Wohnen (Ratsbeschluss vom
+          29.06.2009), das Konzept &quot;
           <a target='_more' href='https://ris.wuppertal.de/vo0050.php?__kvonr=23214'>
             Neue Wohnbauflächen für Wuppertal
           </a>
           &quot; (
           <a target='_more' href='https://ris.wuppertal.de/to0050.php?__ktonr=100704'>
             Ratsbeschluss vom 22.06.2020
+          </a>
+          ) und das{" "}
+          <a target='_more' href='https://ris.wuppertal.de/vo0050.php?__kvonr=24476'>
+            Innenentwicklungskonzept Wuppertal
+          </a>{" "}
+          (
+          <a target='_more' href='https://ris.wuppertal.de/to0050.php?__ktonr=102431'>
+            Ratsbeschluss vom 07.12.2020
           </a>
           ). Durchgreifende Überarbeitung für die laufende Pflege mit WuNDa/Potenzialflächen im Jahr
           2021.
@@ -77,22 +80,23 @@ const Fachdatenquellen = () => {
           Wohnbebauung besteht und deren Erschließung entweder bereits gesichert ist oder über eine
           Grundstücksteilung oder eine Baulast einfach gesichert werden kann. Baulücken sind
           Baupotenziale auf unbebauten oder auf bereits bebauten Grundstücken
-          (Ergänzungspotenziale). Der Datenbestand wird stadtbezirksweise neu aufgebaut. Stand Juni
-          2022 waren die Erhebungen für die Stadtbezirke Ronsdorf und Uellendahl-Katernberg
-          abgeschlossen.
+          (Ergänzungspotenziale). Der Datenbestand wird stadtbezirksweise seit 2021 neu aufgebaut.
+          Stand Juni 2022 waren die Erhebungen für die Stadtbezirke Ronsdorf und
+          Uellendahl-Katernberg abgeschlossen.
         </li>
         <li>
           <strong>Brachflächen</strong>: Nach Aufgabe einer gewerblich-industriellen oder sonstigen
           baulichen Nutzung über einen Zeitraum von mindestens drei Jahren ungenutzte, deutlich
           mindergenutzte oder funktionslose Flächen mit Potenzial für neue Nutzungen (Mindestgröße
-          2.000 m²). Erstmalige systematische Erhebung für das{" "}
+          2.000 m²). Erstmalige systematische Erhebung für das Handlungsprogramm Brachflächen im
+          Jahr 2005, erneuert mit dem{" "}
           <a
             target='_more'
             href='https://ris.wuppertal.de/vo0050.php?__kvonr=17710&amp;voselect=13689'
           >
-            Handlungsprogramm Brachflächen
+            Handlungsprogramm Brachflächen 2016
           </a>{" "}
-          im Jahr 2016 (Kenntnisnahme durch den Rat am 02.05.2016),{" "}
+          (Kenntnisnahme durch den Rat am 02.05.2016),{" "}
           <a target='_more' href='https://ris.wuppertal.de/vo0050.php?__kvonr=20083'>
             Fortschreibung im Jahr 2017
           </a>{" "}
