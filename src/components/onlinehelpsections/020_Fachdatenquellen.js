@@ -28,7 +28,7 @@ const Fachdatenquellen = () => {
           <a target='_more' href='https://ris.wuppertal.de/to0050.php?__ktonr=83736'>
             Ratsbeschluss vom 07.05.2018
           </a>
-          )und{" "}
+          ) und{" "}
           <a target='_more' href='https://ris.wuppertal.de/vo0050.php?__kvonr=24105'>
             Aktualisierung im Jahr 2020
           </a>{" "}
@@ -72,7 +72,7 @@ const Fachdatenquellen = () => {
           &quot;junge&quot; Brache). Wiedernutzungspotenziale werden je nach Nutzungsperspektive
           auch in anderen Kategorien geführt. Systematischer Aufbau dieser Kategorie für die
           zukünftige laufende Pflege mit WuNDa/Potenzialflächen in der ersten Jahreshälfte 2022
-          durch Übernahme von Flächen aus den anderen Kategorien.{" "}
+          durch Neuerfassungen und Übernahme von Flächen aus den anderen Kategorien.{" "}
         </li>
         <li>
           <strong>Baulücken</strong>: Flächen mit einer Größe von 400 bis 2.000 m², auf denen
