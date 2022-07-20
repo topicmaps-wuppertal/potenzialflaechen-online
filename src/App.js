@@ -156,7 +156,7 @@ function App() {
   }
   const backgroundConfigurations = {
     lbk: {
-      layerkey: "rvrGrundriss@70|trueOrtho2020@40|rvrSchriftNT@100",
+      layerkey: "rvrGrundriss@70|trueOrtho2022@40|rvrSchriftNT@100",
       src: "/images/rain-hazard-map-bg/ortho.png",
       title: "Luftbildkarte",
     },

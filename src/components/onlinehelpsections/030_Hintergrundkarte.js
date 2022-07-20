@@ -63,11 +63,11 @@ const Hintergrundkarten = () => {
         <li>
           <p>
             <strong>Luftbildkarte</strong>: (1) Kartendienst (WMS) der Stadt Wuppertal.
-            Datengrundlage: True Orthophoto aus Bildflügen vom 26. und 27.03.2020, hergestellt durch
-            Aerowest GmbH/Dortmund, Bodenauflösung 10 cm. (True Orthophoto: Aus Luftbildern mit
-            hoher Längs- und Querüberdeckung in einem automatisierten Bildverarbeitungsprozess
-            berechnetes Bild in Parallelprojektion, also ohne Gebäudeverkippung und sichttote
-            Bereiche.) © Stadt Wuppertal (
+            Datengrundlage: True Orthophoto aus Bildflug vom 16.03.2022, hergestellt durch Aerowest
+            GmbH/Dortmund, Bodenauflösung 10 cm. (True Orthophoto: Aus Luftbildern mit hoher Längs-
+            und Querüberdeckung in einem automatisierten Bildverarbeitungsprozess berechnetes Bild
+            in Parallelprojektion, also ohne Gebäudeverkippung und sichttote Bereiche.) © Stadt
+            Wuppertal (
             <a
               target='_more'
               href='https://www.wuppertal.de/geoportal/Nutzungsbedingungen/NB-GDIKOM-C_Geodaten.pdf'

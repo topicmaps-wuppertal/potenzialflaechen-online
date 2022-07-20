@@ -73,9 +73,6 @@ function PotenzialflaechenOnlineMap({ gazData, jwt, setJWT, setLoginInfo }) {
       maxZoom={22}
       locatorControl={true}
       modalMenu={<MyMenu />}
-      //backgroundlayers='wupp-plan-live@40'
-      // backgroundlayers='OMT_Klokantech_basic'
-      // 'trueOrtho2020@20'
       infoBox={
         <InfoBox
           pixelwidth={350}
