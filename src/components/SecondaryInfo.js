@@ -115,7 +115,11 @@ const InfoPanel = () => {
     }
     if (potenzialflaeche?.beschreibung_flaeche) {
       subSections.push(
-        <SecondaryInfoPanelSection key='standort' bsStyle='warning' header={"Beschreibung"}>
+        <SecondaryInfoPanelSection
+          key='standort'
+          bsStyle='warning'
+          header={"Beschreibung / Sachstand"}
+        >
           <div style={{ fontSize: "115%", padding: "10px", paddingTop: "0px" }}>
             {potenzialflaeche?.beschreibung_flaeche.split("\n").map((part, index) => {
               return <p key={"beschreibung.part" + index}>{part}</p>;
@@ -165,7 +169,7 @@ const InfoPanel = () => {
       subSections.push(
         <SecondaryInfoPanelSection key='standort' bsStyle='info' header={"Bewertung"}>
           <div style={{ fontSize: "115%", padding: "10px", paddingTop: "0px" }}>
-            {display("Kategorie", potenzialflaeche?.kategorie)}
+            {display("Entwicklungsart", potenzialflaeche?.kategorie)}
             {display("Potenzialart", potenzialflaeche?.potenzialart)}
             {display("Entwicklungsstand", potenzialflaeche?.entwicklungsstand)}
             {display("Restriktionen / Hemnisse", potenzialflaeche?.restriktionen)}
@@ -228,7 +232,7 @@ const InfoPanel = () => {
             <div>
               {display("Nummer", potenzialflaeche?.nummer)}
               {display("Bezeichnung", potenzialflaeche?.bezeichnung)}
-              {display("Kampagne", potenzialflaeche?.kampagne?.bezeichnung)}
+              {display("Kategorie", potenzialflaeche?.kampagne?.bezeichnung)}
               {display("Flächengröße", potenzialflaeche?.groesse, (a) => (
                 <span>
                   {a.toLocaleString()} m² (circa{" "}
