@@ -187,7 +187,7 @@ create or replace view daq.potenzialflaechen_basequery as (
                                 SELECT bplan_verfahren.nummer AS name, sub_geom.geo_field
                                 FROM bplan_verfahren
                                 LEFT JOIN geom sub_geom ON sub_geom.id = bplan_verfahren.geometrie
-                        ) sub ON sub.geo_field && pf_geom.geo_field and st_intersects(sub.geo_field, st_buffer(pf_geom.geo_field,-2)) GROUP BY pf_potenzialflaeche.id, pf_geom.geo_field) BPL 
+                        ) sub ON sub.geo_field && pf_geom.geo_field and st_intersects(sub.geo_field, st_buffer(pf_geom.geo_field,-3)) GROUP BY pf_potenzialflaeche.id, pf_geom.geo_field) BPL 
                         ON BPL.pf_id=pf_potenzialflaeche.id
                      LEFT JOIN
                          (SELECT '['||array_to_string(array_agg(DISTINCT '"'||sub.name||'"'::text),',')||']' stadtraumtypen, pf_potenzialflaeche.id AS pf_id
@@ -235,7 +235,7 @@ create or replace view daq.potenzialflaechen_basequery as (
                             LEFT JOIN rpd_kategorie ON rpd_flaeche.fk_kategorie = rpd_kategorie.id 
                             LEFT JOIN geom sub_geom ON sub_geom.id = rpd_flaeche.fk_geom
                         ) sub ON (
-                            st_intersects(sub.geo_field, pf_geom.geo_field) 
+                            st_intersects(sub.geo_field, st_buffer(pf_geom.geo_field, (-2)::double precision)) 
                             AND st_area(st_intersection(sub.geo_field, pf_geom.geo_field)) > st_area(pf_geom.geo_field) * 0.2
                         )
                         GROUP BY pf_potenzialflaeche.id, pf_geom.geo_field) RPD
@@ -249,7 +249,7 @@ create or replace view daq.potenzialflaechen_basequery as (
     --                         LEFT JOIN fnp_hn_flaeche ON fnp_hn_flaeche.fk_fnp_hn_kategorie = fnp_hn_kategorie.id 
     --                         LEFT JOIN geom sub_geom ON sub_geom.id = fnp_hn_flaeche.fk_geom
     --                     ) sub ON (
-    --                         st_intersects(sub.geo_field, pf_geom.geo_field) 
+    --                         st_intersects(sub.geo_field, st_buffer(pf_geom.geo_field, (-2)::double precision)) 
     --                          AND st_area(st_intersection(sub.geo_field, pf_geom.geo_field)) > st_area(pf_geom.geo_field) * 0.1
     --                         
     --                     )
